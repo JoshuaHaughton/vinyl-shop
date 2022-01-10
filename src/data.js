@@ -6,7 +6,7 @@ export const vinyls = [
     artist: "Billie Eilish",
     url: "https://archive.org/download/mbid-56ad2c65-143f-4868-82d8-302f0c950473/mbid-56ad2c65-143f-4868-82d8-302f0c950473-30012618139_thumb500.jpg",
     originalPrice: 50.25,
-    salePrice: 12.75,
+    salePrice: null,
     rating: 5,
   },
 {
@@ -69,7 +69,7 @@ export const vinyls = [
     artist: "James Blake",
     url: "https://archive.org/download/mbid-107b623e-d166-4b83-8209-c017c5a9414f/mbid-107b623e-d166-4b83-8209-c017c5a9414f-30615066726_thumb500.jpg",
     originalPrice: 49.95,
-    salePrice: 30.95,
+    salePrice: null,
     rating: 5,
   },
 {
@@ -78,7 +78,7 @@ export const vinyls = [
     artist: "J. Cole",
     url: "https://archive.org/download/mbid-ed72aaae-9fe3-4f7f-851d-d87f60116a1b/mbid-ed72aaae-9fe3-4f7f-851d-d87f60116a1b-29344177862_thumb500.jpg",
     originalPrice: 43.65,
-    salePrice: 22.95,
+    salePrice: null,
     rating: 5,
   },
 {
@@ -87,7 +87,7 @@ export const vinyls = [
     artist: "Dave",
     url: "https://archive.org/download/mbid-16d0ce23-9d24-497a-b6a8-79156e2b563e/mbid-16d0ce23-9d24-497a-b6a8-79156e2b563e-29993914585_thumb500.jpg",
     originalPrice: 41.00,
-    salePrice: 30.95,
+    salePrice: null,
     rating: 5,
   },
 
@@ -100,16 +100,14 @@ export const vinyls = [
     salePrice: 43.75,
     rating: 5,
   },
-{
+  {
     id: 12,
-    title: "Donda",
-    artist: "Kanye West",
-    url: "https://archive.org/download/mbid-c17c919f-892d-4cd6-bd9a-d37fcc2f544d/mbid-c17c919f-892d-4cd6-bd9a-d37fcc2f544d-30271591192_thumb500.jpg",
+    title: "Certified Lover Boy",
+    artist: "Drake",
+    url: "https://archive.org/download/mbid-d9c7cb56-8377-4832-bea3-7bebada561c3/mbid-d9c7cb56-8377-4832-bea3-7bebada561c3-30555527737_thumb500.jpg",
     originalPrice: 24.92,
     salePrice: 21.30,
     rating: 3,
-  },
-
-
+  }
 
 ];

@@ -3,6 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logopPlaceholder from '../assets/logo-placeholder.png'
 
 const Nav = () => {
+  const openMenu = () => {
+    document.body.classList =+ " menu--open";
+  }
+
+  const closeMenu = () => {
+    document.body.classList.remove(" menu--open");
+  }
+
   return (
     <nav>
       <div className="nav__container">
@@ -20,7 +28,7 @@ const Nav = () => {
               Vinyls
             </a>
           </li>
-          <button className="btn__menu">
+          <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="bars" />
           </button>
           <li className="nav__icon">
@@ -31,7 +39,7 @@ const Nav = () => {
           </li>
         </ul>
         <div className="menu__backdrop">
-          <button className="btn__menu btn__menu--close">
+          <button className="btn__menu btn__menu--close" onClick={closeMenu}>
             <FontAwesomeIcon icon="times"/>
           </button>
           <ul className="menu__links">

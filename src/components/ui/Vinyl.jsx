@@ -17,8 +17,18 @@ const vinyl = ({ vinylInfo }) => {
       </div>
       <div className="vinyl__ratings">
         {
-          new Array(5).fill(0).map((_, index) => <FontAwesomeIcon icon="star" key={index}/>)
+          new Array(Math.floor(vinylInfo.rating)).fill(0).map((_, index) => <FontAwesomeIcon icon="star" key={index}/>)
+
         }
+        {
+          Number.isInteger(vinylInfo.rating) ? '' : <FontAwesomeIcon icon="star-half-alt"/>
+        }
+
+        {/* {
+          vinylInfo.rating <= 4 ? 
+          new Array (5 - Math.ceil(vinylInfo.rating)).fill(0).map((_, index) => <FontAwesomeIcon icon="star" key={index}/>)
+          : ''
+        } */}
       </div>
       <div className="vinyl__price">
         {vinylInfo.salePrice ? (

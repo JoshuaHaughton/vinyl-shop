@@ -16,7 +16,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-71640529-7a8e-4fc5-ac94-37b0c6e0889d/mbid-71640529-7a8e-4fc5-ac94-37b0c6e0889d-28371263864_thumb500.jpg",
     originalPrice: 29.92,
     salePrice: 22.95,
-    rating: 2,
+    rating: 4.5,
   },
 {
     id: 3,
@@ -25,7 +25,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-e514ed72-b968-4c58-9f80-638dcfe166c9/mbid-e514ed72-b968-4c58-9f80-638dcfe166c9-30965951217_thumb500.jpg",
     originalPrice: 80.95,
     salePrice: 24.95,
-    rating: 2.5,
+    rating: 4.5,
   },
 {
     id: 4,
@@ -34,7 +34,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-f01d4b40-6de0-4ddd-97ef-50ecfc3c3489/mbid-f01d4b40-6de0-4ddd-97ef-50ecfc3c3489-29162863455_thumb500.jpg",
     originalPrice: 41.34,
     salePrice: 32.63,
-    rating: 3,
+    rating: 4.5,
   },
 {
     id: 5,
@@ -43,7 +43,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-a9c94819-f475-4682-a02f-60ec66cab546/mbid-a9c94819-f475-4682-a02f-60ec66cab546-29983787967_thumb500.jpg",
     originalPrice: 49.73,
     salePrice: 38.15,
-    rating: 4,
+    rating: 4.5,
   },
 {
     id: 6,
@@ -61,7 +61,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-3b146b58-6030-4e02-a3e8-48d1d793a547/mbid-3b146b58-6030-4e02-a3e8-48d1d793a547-30676145801_thumb500.jpg",
     originalPrice: 52.95,
     salePrice: 34.95,
-    rating: 3.5,
+    rating: 4.5,
   },
 {
     id: 8,
@@ -107,7 +107,7 @@ export const vinyls = [
     url: "https://archive.org/download/mbid-d9c7cb56-8377-4832-bea3-7bebada561c3/mbid-d9c7cb56-8377-4832-bea3-7bebada561c3-30555527737_thumb500.jpg",
     originalPrice: 24.92,
     salePrice: 21.30,
-    rating: 3,
+    rating: 4.5,
   }
 
 ];

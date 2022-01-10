@@ -7,7 +7,7 @@ const Discounted = () => {
     <section id="recent">
       <div className="row">
         <h2 className="section__title">
-          Discount <span className="blue">Vinyls</span>
+          Discounted <span className="blue">Vinyls</span>
         </h2>
         <div className="vinyls">
           {vinyls.filter(vinyl => vinyl.salePrice > 0)

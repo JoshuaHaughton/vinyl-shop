@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HeroImage from '../assets/Hero-3.png';
 
 
@@ -10,9 +11,9 @@ const Landing = () => {
           <div className="header__description">
             <h1>Ottawa's most awarded online vinyl exchange!</h1>
             <h2>Find you dream Vinyl with <span className="purple">Vinyl Shop</span></h2>
-            <a href="features">
+            <Link to="features">
               <button className="btn">Broswe Vinyls</button>
-            </a>
+            </Link>
           </div>
           <figure className="header__img--wrapper">
             <img src={HeroImage} alt="" />

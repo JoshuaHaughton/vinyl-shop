@@ -1,8 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const vinyl = ({ vinylInfo }) => {
-  console.log("vinyl", vinylInfo);
+const Vinyl = ({ vinylInfo }) => {
   return (
     <div className="vinyl">
       <a href="">
@@ -46,4 +45,4 @@ const vinyl = ({ vinylInfo }) => {
   );
 };
 
-export default vinyl;
+export default Vinyl;

@@ -3,7 +3,6 @@ import Vinyl from './ui/Vinyl'
 import { vinyls } from '../data'
 
 const Featured = () => {
-  console.log(vinyls);
 
   return (
     <section id="features">

@@ -32,6 +32,14 @@ function App() {
     setCart(cart.filter(item => item.id !== vinyl.id))
   }
 
+  const numberOfItems = () => {
+    let counter = 0;
+    cart.forEach(item => {
+      counter += item.quantity
+    })
+    return counter;
+  }
+
 
 
   useEffect(() => {
@@ -42,7 +50,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav numberOfItems={numberOfItems()}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/vinyls" element={<Vinyls vinyls={vinyls} />} />

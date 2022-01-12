@@ -1,14 +1,24 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import Price from '../components/ui/Price'
-import Rating from '../components/ui/Rating'
-import Vinyl from '../components/ui/Vinyl'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import Price from "../components/ui/Price";
+import Rating from "../components/ui/Rating";
+import Vinyl from "../components/ui/Vinyl";
 
-const VinylInfo = ({ vinyls }) => {
+const VinylInfo = ({ vinyls, addToCart, cart }) => {
   const { id } = useParams();
-  const thisVinyl = vinyls.find(vinyl => +vinyl.id === +id)
-  console.log(thisVinyl);
+
+  const thisVinyl = vinyls.find((vinyl) => +vinyl.id === +id);
+
+
+  const addVinylToCart = (vinyl) => {
+    addToCart(vinyl);
+  };
+
+  const vinylExistsInCart = () => {
+    return cart.find(vinyl => +vinyl.id === +id)
+  }
+
   return (
     <div id="vinyls__body">
       <main id="vinyls__main">
@@ -24,28 +34,46 @@ const VinylInfo = ({ vinyls }) => {
             </div>
             <div className="vinyl__selected">
               <figure className="vinyl__selected--figure">
-                <img src={thisVinyl.url} alt="" />
+                <img
+                  src={thisVinyl.url}
+                  alt=""
+                  className="vinyl__selected--img"
+                />
               </figure>
               <div className="vinyl__selected--description">
                 <h2 className="vinyl__selected--title">{thisVinyl.title}</h2>
-                <Rating rating={thisVinyl.rating}/>
+                <Rating rating={thisVinyl.rating} />
                 <div className="vinyl__selected--price">
-                  <Price originalPrice={thisVinyl.originalPrice} salePrice={thisVinyl.salePrice}/>
+                  <Price
+                    originalPrice={thisVinyl.originalPrice}
+                    salePrice={thisVinyl.salePrice}
+                  />
                 </div>
                 <div className="vinyl__summary">
-                  <h3 className="vinyl__summary--title">
-                    Summary
-                  </h3>
+                  <h3 className="vinyl__summary--title">Summary</h3>
                   <p className="vinyl__summary--para">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quia ad, impedit soluta aut molestias voluptates voluptas ab facere aliquam suscipit nesciunt quod possimus. Magni quisquam atque commodi magnam dolor?
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Iure quia ad, impedit soluta aut molestias voluptates
+                    voluptas ab facere aliquam suscipit nesciunt quod possimus.
+                    Magni quisquam atque commodi magnam dolor?
                   </p>
                   <p className="vinyl__summary--para">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure quia ad, impedit soluta aut molestias voluptates voluptas ab facere aliquam suscipit nesciunt quod possimus. Magni quisquam atque commodi magnam dolor?
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Iure quia ad, impedit soluta aut molestias voluptates
+                    voluptas ab facere aliquam suscipit nesciunt quod possimus.
+                    Magni quisquam atque commodi magnam dolor?
                   </p>
                 </div>
-                <button className="btn">
-                  Add To Cart!
-                </button>
+                {vinylExistsInCart() ? (
+                  <Link to="/cart"> <button className="btn">Checkout</button></Link>
+                ) : (
+                  <button
+                    className="btn"
+                    onClick={() => addVinylToCart(thisVinyl)}
+                  >
+                    Add To Cart!
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -58,18 +86,20 @@ const VinylInfo = ({ vinyls }) => {
               </h2>
             </div>
             <div className="vinyls">
-            {
-              vinyls
-              .filter(vinyl => vinyl.rating === 5 && +vinyl.id !== +thisVinyl.id)
-              .slice(0, 4)
-              .map(vinyl => <Vinyl vinylInfo={vinyl} key={vinyl.id}/>)
-            }
+              {vinyls
+                .filter(
+                  (vinyl) => vinyl.rating === 5 && +vinyl.id !== +thisVinyl.id,
+                )
+                .slice(0, 4)
+                .map((vinyl) => (
+                  <Vinyl vinylInfo={vinyl} key={vinyl.id} />
+                ))}
             </div>
           </div>
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default VinylInfo
+export default VinylInfo;

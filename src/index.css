@@ -386,7 +386,7 @@ FEATURES
 .vinyl__img--skeleton {
   width: 100%;
   max-width: 250px;
-  height: 320px;
+  height: 250px;
   background-color: rgb(204, 204, 204);
   margin-bottom: 8px;
 }

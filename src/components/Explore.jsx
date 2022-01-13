@@ -5,12 +5,12 @@ const Explore = () => {
   return (
     <section id="explore">
       <div className="container">
-        <div className="row row__clumn">
+        <div className="row row__column">
           <h2>
             Explore more <span className="ble">Vinyls</span>
           </h2>
           <Link to="/vinyls">
-            <button className="btn"></button>Explore vinyls
+            <button className="btn">Explore vinyls</button>
           </Link>
         </div>
       </div>

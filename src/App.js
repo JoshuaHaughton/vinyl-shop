@@ -6,6 +6,7 @@ import Vinyls from "./pages/Vinyls";
 import { vinyls } from "./data";
 import VinylInfo from "./pages/VinylInfo";
 import Cart from "./pages/Cart";
+import ScrollToTop from "./components/ui/ScrollToTop";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -29,51 +30,50 @@ function App() {
   };
 
   const removeVinyl = (vinyl) => {
-    setCart(cart.filter(item => item.id !== vinyl.id))
-  }
+    setCart(cart.filter((item) => item.id !== vinyl.id));
+  };
 
   const numberOfItems = () => {
     let counter = 0;
-    cart.forEach(item => {
-      counter += item.quantity
-    })
+    cart.forEach((item) => {
+      counter += item.quantity;
+    });
     return counter;
-  }
-
-
+  };
 
   useEffect(() => {
     console.log(cart);
   }, [cart]);
 
-
   return (
     <Router>
-      <div className="App">
-        <Nav numberOfItems={numberOfItems()}/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/vinyls" element={<Vinyls vinyls={vinyls} />} />
-          <Route
-            path="/vinyls/:id"
-            element={
-              <VinylInfo vinyls={vinyls} addToCart={addToCart} cart={cart} />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                vinyls={vinyls}
-                cart={cart}
-                changeQuantity={changeQuantity}
-                removeVinyl={removeVinyl}
-              />
-            }
-          />
-        </Routes>
-        <Footer />
-      </div>
+      <ScrollToTop>
+        <div className="App">
+          <Nav numberOfItems={numberOfItems()} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vinyls" element={<Vinyls vinyls={vinyls} />} />
+            <Route
+              path="/vinyls/:id"
+              element={
+                <VinylInfo vinyls={vinyls} addToCart={addToCart} cart={cart} />
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  vinyls={vinyls}
+                  cart={cart}
+                  changeQuantity={changeQuantity}
+                  removeVinyl={removeVinyl}
+                />
+              }
+            />
+          </Routes>
+          <Footer />
+        </div>
+      </ScrollToTop>
     </Router>
   );
 }

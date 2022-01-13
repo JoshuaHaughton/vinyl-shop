@@ -224,9 +224,7 @@ LANDING
 */
 
 #landing {
-  background-color: rgba(115, 66, 214, 0.1);
-  /* padding-top: 100px; */
-  /* z-index: 100; */
+  background-color: rgba(35, 63, 139, 0.384);
 }
 
 header {
@@ -245,15 +243,20 @@ header {
 
 .header__description {
   display: flex;
+  padding: 20px 0px 70px 0px;
   flex-direction: column;
   align-items: center;
   z-index: 100;
 }
 
+.header__description button {
+  margin-top: 15px
+}
+
 .header__img--wrapper {
-  padding: 20px;
+  padding: 100px 0 20px 0;
   z-index: 50;
-  width: 250px;
+  width: 230px;
   align-self: center;
 }
 
@@ -361,7 +364,7 @@ FEATURES
 
 #features {
   padding-top: 8vw;
-  background-color: rgba(115, 66, 214, 0.1);
+  background-color: rgba(0, 47, 255, 0.13);
 }
 
 .vinyls {
@@ -452,7 +455,7 @@ EXPLORE
 */
 
 #explore {
-  background-color: rgba(115, 66, 214, 0.1);
+  background-color: rgba(0, 47, 255, 0.13);
 }
 
 /* 
@@ -830,4 +833,8 @@ select {
 
   #recent {
     padding-top: 40px;
+  }
+
+  .row h2 {
+    padding-bottom: 25px;
   }

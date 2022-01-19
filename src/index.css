@@ -31,6 +31,8 @@ nav {
 
 img {
   width: 100%;
+  height: 100%;
+  max-width: 50vh;
 }
 
 p {
@@ -57,7 +59,7 @@ li {
 
 h1 {
   font-size: 56px;
-  color: #1034A6;
+  color: #0652b4;
   margin-bottom: 24px;
   text-align: center;
 }
@@ -77,16 +79,25 @@ button:active {
 }
 
 .btn {
-  background-color: #1034A6;
+  background-color: #0652b4;
   color: white;
   padding: 12px 24px;
   font-size: 20px;
   border-radius: 4px;
   border: none;
+  transition: all 300ms ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:hover {
+  transform: scale(1.025);
 }
 
 .blue {
-  color: #1034A6;
+  color: #0652b4;
 }
 
 .logo {
@@ -108,7 +119,7 @@ button:active {
   font-size: 20px;
   font-weight: bold;
   padding: 8px;
-  color: #1034A6;
+  color: #0652b4;
 }
 
 .nav__list {
@@ -123,7 +134,7 @@ button:active {
 }
 
 .nav__link--primary {
-  border: 2px solid #1034A6;
+  border: 2px solid #0652b4;
   border-radius: 4px;
 }
 
@@ -135,7 +146,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1034A6;
+  color: #0652b4;
   font-size: 20px;
   position: relative;
   margin-left: 8px;
@@ -161,7 +172,7 @@ button:active {
   background-color: transparent;
   font-size: 32px;
   border: none;
-  color: #1034A6;
+  color: #0652b4;
   display: none;
 }
 
@@ -224,11 +235,11 @@ LANDING
 */
 
 #landing {
-  background-color: rgba(35, 63, 139, 0.384);
+  background-color: rgba(0, 47, 255, 0.13);
 }
 
 header {
-  height: calc(100vh - 80px);
+  height: calc(100vh + 80px);
 }
 
 .header__container {
@@ -238,12 +249,12 @@ header {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .header__description {
   display: flex;
-  padding: 20px 0px 70px 0px;
+  padding: 75px 0 50px 0px;
   flex-direction: column;
   align-items: center;
   z-index: 100;
@@ -254,10 +265,13 @@ header {
 }
 
 .header__img--wrapper {
-  padding: 100px 0 20px 0;
+  padding: 40px 0 20px 0;
+  margin-top: 24px;
   z-index: 50;
-  width: 230px;
+  width: 700px;
   align-self: center;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -338,8 +352,8 @@ HIGHLIGHTS
 }
 
 .highlight__img {
-  border: 2px solid #1034A65d;
-  color: #1034A6;
+  border: 2px solid #0652b45d;
+  color: #0652b4;
   width: 100px;
   height: 100px;
   display: flex;
@@ -419,6 +433,8 @@ FEATURES
 
 .vinyl__link {
   color: #242424;
+  display: flex;
+  align-items: center;
 }
 
 .vinyl__img--wrapper {
@@ -541,7 +557,7 @@ select {
   justify-content: center;
   padding-top: 60px;
   font-size: 60px;
-  color: #1034A6;
+  color: #0652b4;
 }
 
 .fa-spinner {
@@ -612,8 +628,10 @@ select {
 }
 
 .vinyl__selected--title--top {
-  margin-left: 10px;
+  margin-left: 15px;
   margin-bottom: 0;
+  /* Needed to use important to align the Vinyl and back arrow on the VinylInfo page */
+  padding-bottom: 0 !important;
 }
 
 .vinyl__summary {
@@ -649,7 +667,7 @@ select {
 */
 
 .cart__header {
-  background-color: #1034A6;
+  background-color: #0652b4;
   margin: 0 24px;
   padding: 8px 16px;
   color: white;
@@ -742,7 +760,7 @@ select {
 }
 
 .total__sub-total {
-  border-top: 2px solid #1034A6;
+  border-top: 2px solid #0652b4;
   padding-top: 24px;
 }
 

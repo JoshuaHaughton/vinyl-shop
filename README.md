@@ -6,10 +6,10 @@ View Live HERE: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)
 
 
 ## Built With
-HTML5
-CSS3
-JavaScript
-React.js
+- HTML5
+- CSS3
+- JavaScript
+- React.js
 
 
 ## Description / Features
@@ -18,7 +18,7 @@ React.js
 - Functional sorting by price (low to high / high to low) or rating
 - Recommended vinyls showcases 5-star rated selections
 - Dynamically updating cart with quantities and price totals
-- Final app and subsequent edits connected and deployed to Heroku
+- Final app and subsequent edits connected and deployed to Netlify
 
 
 

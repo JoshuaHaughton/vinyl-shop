@@ -22,6 +22,10 @@ View Live HERE: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)
 
 
 
+
+## Images
+
+
 ### Landing
 !['Landing page of website'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Landing.png)
 

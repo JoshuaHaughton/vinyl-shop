@@ -1,7 +1,8 @@
 ### Vinyl Fresh - E-commerce Shop
 Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn in-depth about JavaScript and React, and allowed me to experiment with implementing both these features into something I've built myself.
 
-View Live Here: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)
+View Live HERE: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)
+
 
 
 ## Built With
@@ -18,6 +19,19 @@ React.js
 - Recommended vinyls showcases 5-star rated selections
 - Dynamically updating cart with quantities and price totals
 - Final app and subsequent edits connected and deployed to Heroku
+
+
+
+### Landing
+!['Landing page of website'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Landing.png)
+
+
+### Highlights
+!['Highlights of website'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Highlights.png)
+
+
+### All Vinyls
+!['List of all available vinyls'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/All-Vinyls.png)
 
 
 

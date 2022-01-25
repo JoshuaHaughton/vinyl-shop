@@ -28,7 +28,7 @@ const VinylInfo = ({ vinyls, addToCart, cart }) => {
               <Link to="/vinyls" className="vinyl__link">
                 <FontAwesomeIcon icon="arrow-left" />
               </Link>
-              <Link to="/vinyl" className="vinyl__link">
+              <Link to="/vinyls" className="vinyl__link">
                 <h2 className="vinyl__selected--title--top">Vinyls</h2>
               </Link>
             </div>

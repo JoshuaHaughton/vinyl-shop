@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+### Vinyl Fresh - E-commerce Shop
+Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn in-depth about JavaScript and React, and allowed me to experiment with implementing both these features into something I've built myself.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View Live Here: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)
+
+
+## Built With
+HTML5
+CSS3
+JavaScript
+React.js
+
+
+## Description / Features
+- Page layouts and styling built entirely with HTML and CSS
+- Use of React hooks
+- Functional sorting by price (low to high / high to low) or rating
+- Recommended vinyls showcases 5-star rated selections
+- Dynamically updating cart with quantities and price totals
+- Final app and subsequent edits connected and deployed to Heroku
+
+
+
 
 ## Available Scripts
 
@@ -38,33 +58,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -19,12 +19,12 @@ const Highlights = () => {
             <Highlight 
             icon={<FontAwesomeIcon icon="record-vinyl"/>} 
             title="10,000+ vinyls"
-            para="Vinyl Fresh has vinyls in all your favourite categories"
+            para="Vinyl Fresh has vinyls in all your favourite categories!"
             />
             <Highlight 
             icon={<FontAwesomeIcon icon="tags"/>} 
             title="Affordable"
-            para="Get your hand on popular vinyls for as little as $20!"
+            para="Get your hands on popular vinyls for as little as $20!"
             />
           </div>
         </div>

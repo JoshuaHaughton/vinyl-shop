@@ -1,4 +1,4 @@
-### Vinyl Fresh - E-commerce Shop
+# Vinyl Fresh - E-commerce Shop
 Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn in-depth about JavaScript and React, and allowed me to experiment with implementing both these features into something I've built myself.
 
 View Live HERE: [Vinyl Shop](https://suspicious-yalow-daf144.netlify.app/)

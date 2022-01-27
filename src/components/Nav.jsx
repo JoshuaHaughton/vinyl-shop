@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 const Nav = ({ numberOfItems }) => {
   const openMenu = () => {
-    document.body.classList =+ " menu--open";
+    document.body.classList += " menu--open";
   }
 
   const closeMenu = () => {
-    document.body.classList.remove(" menu--open");
+    document.body.classList.remove("menu--open");
   }
 
   return (

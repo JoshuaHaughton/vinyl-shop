@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logoPlaceholder from "../assets/logo-placeholder.png"
+import logo from "../assets/Logo.svg"
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="row row__column">
           <Link to="/">
             <figure className="footer__logo">
-              <img src={logoPlaceholder} alt="" className="footer__logo--img" />
+              <img src={logo} alt="" className="footer__logo--img" />
             </figure>
           </Link>
           <div className="footer__list">

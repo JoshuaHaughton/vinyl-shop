@@ -1,0 +1,82 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 30vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.header {
+  background: #0652b4;
+  height: 8vh;
+  padding: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+}
+
+.button {
+  font: inherit;
+  border: 1px solid #0652b4;
+  background: #0652b4;
+  border-radius: 4px;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 450ms ease;;
+}
+
+.button:hover,
+.button:active {
+  background: #0652b4;
+  border-color: #0652b4;
+}
+
+.button:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #0652b4;
+  transform: scale(1.015);
+}
+
+.button:focus {
+  outline: none;
+}
+
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+

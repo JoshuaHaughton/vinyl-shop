@@ -25,12 +25,14 @@ const Nav = ({ numberOfItems }) => {
         </Link>
         <ul className="nav__links">
           <li className="nav__list">
-            <Link to="/" className="nav__link">
+            <Link to="/" className="nav__link link__hover-effect
+              link__hover-effect--black">
               Home
             </Link>
           </li>
           <li className="nav__list">
-            <Link to="/vinyls" className="nav__link">
+            <Link to="/vinyls" className="nav__link link__hover-effect
+              link__hover-effect--black">
               Vinyls
             </Link>
           </li>
@@ -38,8 +40,8 @@ const Nav = ({ numberOfItems }) => {
             <FontAwesomeIcon icon="bars" />
           </button>
           <li className="nav__icon">
-            <Link to="/cart" className="nav__link">
-              <FontAwesomeIcon icon="shopping-cart" />
+            <Link to="/cart" className="nav__link nav__icon--link">
+              <FontAwesomeIcon icon="shopping-cart" className="shopping-cart"/>
             </Link>
             {numberOfItems > 0 && (
               <span className="cart__length">{numberOfItems}</span>

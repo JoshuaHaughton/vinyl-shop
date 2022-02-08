@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Nav = ({ numberOfItems }) => {
   const openMenu = () => {
@@ -10,11 +10,6 @@ const Nav = ({ numberOfItems }) => {
 
   const closeMenu = () => {
     document.body.classList.remove("menu--open");
-  };
-
-  const turnOff = (place) => {
-    <Navigate to={place} />;
-    closeMenu();
   };
 
   return (

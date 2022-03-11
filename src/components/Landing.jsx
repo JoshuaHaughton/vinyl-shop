@@ -12,7 +12,7 @@ const Landing = () => {
             <h1>Canada's top rated online vinyl exchange!</h1>
             <h2>Find your dream vinyl with <span className="blue">Vinyl Fresh</span></h2>
             <Link to="/vinyls">
-              <button className="btn">Browse Vinyls</button>
+              <button className="btn landing__btn">Browse Vinyls</button>
             </Link>
             <figure className="header__img--wrapper">
             <img src={HeroImage} alt="" />

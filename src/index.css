@@ -148,6 +148,7 @@ button:active {
   justify-self: center;
   text-align: center;
   width: 100%;
+  transition: all 950ms ease;
 }
 
 .nav__link--primary {
@@ -418,7 +419,8 @@ FEATURES
   transition: all 300ms ease;
 }
 
-.vinyl:hover {
+.vinyl__img--wrapper:hover {
+  transform: scale(1.02);
   transform: translateY(-4px);
 }
 
@@ -467,6 +469,8 @@ FEATURES
   border-radius: 4px;
   overflow: hidden;
   display: flex;
+  box-shadow: -1px 3px 4px 2px rgba(0, 0, 0, 0.17);
+  transition: all 300ms ease;
 }
 
 .vinyl__title {
@@ -515,6 +519,7 @@ footer {
 
 .footer__logo:hover .footer__logo--img{
   transform: scale(1.15);
+  filter: none;
 }
 
 .footer__logo--img {
@@ -530,6 +535,8 @@ footer {
 
 .footer__list {
   margin: 20px 0 24px 0;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .footer__link {
@@ -627,7 +634,11 @@ select {
 
 .vinyl__selected--figure {
   width: 40%;
-  padding: 16px 32px;
+  height: 40%;
+  padding: 32px 32px;
+  max-width: 460px;
+  max-height: 460px;
+  margin-right: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -635,8 +646,30 @@ select {
 
 .vinyl__selected--img {
   max-height: 500px;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  min-height: 275px;
+  border-radius: 12px;
+  box-shadow: -1px 3px 2px 2px rgba(0, 0, 0, 0.17);
+  transition: all 2s ease;
+  animation: floating 2.5s infinite ease-in-out;
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.vinyl__selected--img:hover {
+  animation-play-state: running;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .vinyl__selected--description {
@@ -676,7 +709,8 @@ select {
 }
 
 .vinyl__selected--title {
-  margin-bottom: 8px
+  margin-bottom: 8px;
+  padding-bottom: 0;
 }
 
 .vinyl__summary--title {
@@ -884,6 +918,16 @@ select {
   .cart__vinyl--info {
     padding-left: 0;
   }
+
+  .footer__list {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+  }
+
+  .footer__link {
+    padding: 0 8px;
+  }
 }
 
 /* ID */
@@ -893,5 +937,10 @@ select {
   }
 
   .row h2 {
-    padding-bottom: 25px;
+    padding-bottom: 18px;
+  }
+
+  #vinyl__selected--title {
+    margin-bottom: 8px;
+    padding-bottom: 0;
   }

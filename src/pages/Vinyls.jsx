@@ -41,7 +41,7 @@ const Vinyls = ({ vinyls: initialVinyls }) => {
           <div className="vinyls__container">
             <div className="row">
               <div className="vinyls__header">
-                <h2 class="section__title vinyls__header--title">All Vinyls</h2>
+                <h2 className="section__title vinyls__header--title">All Vinyls</h2>
                 <select
                   id="filter"
                   defaultValue="DEFAULT"

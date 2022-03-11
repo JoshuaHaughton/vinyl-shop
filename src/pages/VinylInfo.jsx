@@ -41,7 +41,7 @@ const VinylInfo = ({ vinyls, addToCart, cart }) => {
                 />
               </figure>
               <div className="vinyl__selected--description">
-                <h2 className="vinyl__selected--title">{thisVinyl.title}</h2>
+                <h2 id="vinyl__selected--title">{thisVinyl.title}</h2>
                 <Rating rating={thisVinyl.rating} />
                 <div className="vinyl__selected--price">
                   <Price
@@ -88,7 +88,7 @@ const VinylInfo = ({ vinyls, addToCart, cart }) => {
             <div className="vinyls">
               {vinyls
                 .filter(
-                  (vinyl) => vinyl.rating === 5 && +vinyl.id !== +thisVinyl.id,
+                  (vinyl) => vinyl.rating > 8 && +vinyl.id !== +thisVinyl.id,
                 )
                 .slice(0, 4)
                 .map((vinyl) => (

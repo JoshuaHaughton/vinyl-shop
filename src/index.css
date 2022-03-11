@@ -469,7 +469,7 @@ FEATURES
   border-radius: 4px;
   overflow: hidden;
   display: flex;
-  box-shadow: -1px 3px 4px 2px rgba(0, 0, 0, 0.17);
+  box-shadow: -1px 3px 5px 2px rgba(0, 0, 0, 0.13);
   transition: all 300ms ease;
 }
 
@@ -649,7 +649,7 @@ select {
   width: 100%;
   min-height: 275px;
   border-radius: 12px;
-  box-shadow: -1px 3px 2px 2px rgba(0, 0, 0, 0.17);
+  box-shadow: -1px 4px 8px 2px rgba(0, 0, 0, 0.3);
   transition: all 2s ease;
   animation: floating 2.5s infinite ease-in-out;
   animation-play-state: paused;
@@ -700,7 +700,6 @@ select {
 .vinyl__selected--title--top {
   margin-left: 15px;
   margin-bottom: 0;
-  /* Needed to use important to align the Vinyl and back arrow on the VinylInfo page */
   padding-bottom: 0 !important;
 }
 

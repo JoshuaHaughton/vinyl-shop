@@ -2,15 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import store from './store';
 import reportWebVitals from './reportWebVitals';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faShoppingCart, faTimes, faBolt, faTags, faStar, faStarHalfAlt, faRecordVinyl, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Provider } from 'react-redux';
 
 library.add(faBars, faShoppingCart, faTimes, faBolt, faTags, faStar, faStarHalfAlt, faRecordVinyl, faArrowLeft);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

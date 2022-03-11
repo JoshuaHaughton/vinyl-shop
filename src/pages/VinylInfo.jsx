@@ -4,15 +4,21 @@ import { Link, useParams } from "react-router-dom";
 import Price from "../components/ui/Price";
 import Rating from "../components/ui/Rating";
 import Vinyl from "../components/ui/Vinyl";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../store/cart";
 
-const VinylInfo = ({ vinyls, addToCart, cart }) => {
+const VinylInfo = ({ vinyls }) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.cart)
+  console.log(cart);
+
 
   const thisVinyl = vinyls.find((vinyl) => +vinyl.id === +id);
 
 
   const addVinylToCart = (vinyl) => {
-    addToCart(vinyl);
+    dispatch(cartActions.addToCart(vinyl))
   };
 
   const vinylExistsInCart = () => {

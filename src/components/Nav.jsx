@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
 
-const Nav = ({ numberOfItems }) => {
+const Nav = () => {
+  let numberOfItems = useSelector(state => state.cart.quantity)
+  
   const openMenu = () => {
     document.body.classList += " menu--open";
   };

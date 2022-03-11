@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/EmptyCart.png";
 import ErrorModal from "../components/ui/ErrorModal";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../store/cart";
+import { useEffect } from "react";
 
-const Cart = ({ cart, changeQuantity, removeVinyl }) => {
+const Cart = () => {
   const [error, setError] = useState();
+  const [cartSubtotal, setCartSubtotal] = useState(0);
+  const [cartTax, setCartTax] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.cart)
+
 
   const subtotal = () => {
     let price = 0;
@@ -31,6 +40,12 @@ const Cart = ({ cart, changeQuantity, removeVinyl }) => {
     setError(null);
   }
 
+  useEffect(() => {
+    setCartSubtotal(subtotal())
+    setCartTax(tax())
+    setCartTotal((+subtotal() + +tax()).toFixed(2))
+  }, [cart])
+
   return (
     <>
       {error && <ErrorModal 
@@ -54,7 +69,7 @@ const Cart = ({ cart, changeQuantity, removeVinyl }) => {
                 <div className="cart__body">
                   {cart.map((vinyl) => {
                     return (
-                      <div className="cart__item">
+                      <div className="cart__item" key={vinyl.id}>
                         <div className="cart__vinyl">
                           <img
                             src={vinyl.url}
@@ -73,7 +88,7 @@ const Cart = ({ cart, changeQuantity, removeVinyl }) => {
                             </span>
                             <button
                               className="cart__vinyl--remove"
-                              onClick={() => removeVinyl(vinyl)}
+                              onClick={() => dispatch(cartActions.removeVinyl(vinyl))}
                             >
                               Remove
                             </button>
@@ -84,10 +99,10 @@ const Cart = ({ cart, changeQuantity, removeVinyl }) => {
                             type="number"
                             min={0}
                             max={99}
-                            class="cart__input"
+                            className="cart__input"
                             value={vinyl.quantity}
                             onChange={(e) =>
-                              changeQuantity(vinyl, e.target.value)
+                              dispatch(cartActions.changeQuantity({id: vinyl.id, newQuantity: e.target.value}))
                             }
                           />
                         </div>
@@ -116,15 +131,15 @@ const Cart = ({ cart, changeQuantity, removeVinyl }) => {
                 <div className="total">
                   <div className="total__item total__sub-total">
                     <span>Subtotal</span>
-                    <span>${subtotal()}</span>
+                    <span>${cartSubtotal}</span>
                   </div>
                   <div className="total__item total__tax">
                     <span>Tax</span>
-                    <span>${tax()}</span>
+                    <span>${cartTax}</span>
                   </div>
                   <div className="total__item total__price">
                     <span>Total</span>
-                    <span>${(+subtotal() + +tax()).toFixed(2)}</span>
+                    <span>${cartTotal}</span>
                   </div>
                   <button
                     className="btn btn__checkout"

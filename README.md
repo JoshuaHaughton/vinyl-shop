@@ -10,7 +10,7 @@ View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 - CSS3
 - JavaScript
 - React.js
-- Redux
+- Redux Toolkit
 
 
 ## Description / Features

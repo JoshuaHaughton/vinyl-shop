@@ -325,6 +325,14 @@ header {
   cursor: not-allowed;
 }
 
+.landing__btn {
+  box-shadow: -1px 3px 5px 2px rgba(0, 0, 0, 0.13);
+}
+
+.landing__btn:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.2) 0px 8px 16px -8px;
+}
+
 /* 
 
 HIGHLIGHTS 
@@ -419,11 +427,6 @@ FEATURES
   transition: all 300ms ease;
 }
 
-.vinyl__img--wrapper:hover {
-  transform: scale(1.02);
-  transform: translateY(-4px);
-}
-
 .vinyl__img {
   max-height: 320px;
   max-width: 250px;
@@ -471,6 +474,12 @@ FEATURES
   display: flex;
   box-shadow: -1px 3px 5px 2px rgba(0, 0, 0, 0.13);
   transition: all 300ms ease;
+}
+
+.vinyl__img--wrapper:hover {
+  transform: scale(1.02);
+  transform: translateY(-4px);
+  box-shadow: rgba(50, 50, 93, 0.4) 0px 13px 27px -5px, rgba(0, 0, 0, 0.4) 0px 8px 16px -8px;
 }
 
 .vinyl__title {
@@ -783,6 +792,8 @@ select {
   width: 100%;
   max-width: 90px;
   max-height: 128px;
+  border-radius: 4px;
+  box-shadow: -1px 3px 5px 2px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -808,6 +819,11 @@ select {
   border: none;
   padding-left: 0;
   width: 48px;
+  transition: all 200ms ease;
+}
+
+.cart__vinyl--remove:hover {
+  opacity: 0.6;
 }
 
 .total {

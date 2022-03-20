@@ -1,5 +1,5 @@
 # Vinyl Fresh - E-commerce Shop
-Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn in-depth about JavaScript and React, and allowed me to experiment with implementing both these features into something I've built myself.
+Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn more about JavaScript, React and Redux, and allowed me to experiment with implementing both these features into something I've built myself.
 
 View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 
@@ -10,6 +10,7 @@ View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 - CSS3
 - JavaScript
 - React.js
+- Redux
 
 
 ## Description / Features
@@ -17,7 +18,7 @@ View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 - Use of React hooks
 - Functional sorting by price (low to high / high to low) or rating
 - Recommended vinyls showcases 5-star rated selections
-- Dynamically updating cart with quantities and price totals
+- Dynamically updating cart with quantities and price totals using Redux
 - Final app and subsequent edits connected and deployed to Netlify
 
 

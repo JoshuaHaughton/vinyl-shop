@@ -134,7 +134,7 @@ const Cart = () => {
                     <span>${cartSubtotal}</span>
                   </div>
                   <div className="total__item total__tax">
-                    <span>Tax</span>
+                    <span>Tax - (1.13%)</span>
                     <span>${cartTax}</span>
                   </div>
                   <div className="total__item total__price">

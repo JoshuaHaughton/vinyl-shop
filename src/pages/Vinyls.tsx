@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Vinyl from "../components/ui/Vinyl";
 
-const Vinyls = ({ vinyls: initialVinyls }) => {
+interface Props {
+  initialVinyls: {
+    id: number;
+    title: string;
+    artist: string;
+    url: string;
+    originalPrice: number;
+    salePrice: number | null;
+    rating: number;
+  }[]
+}
+
+const Vinyls = ({ initialVinyls }: Props): JSX.Element => {
   const [vinyls, setVinyls] = useState(initialVinyls);
 
-  const filterVinyls = (filter) => {
+  const filterVinyls = (filter: string) => {
     console.log(filter);
     if (filter === "LOW_TO_HIGH") {
       setVinyls(
         vinyls
           .slice()
           .sort(
-            (a, b) =>
+            (a: any, b: any) =>
               (a.salePrice || a.originalPrice) -
               (b.salePrice || b.originalPrice),
           ),

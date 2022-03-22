@@ -1,17 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialCartState = { cart: [], quantity: 0 };
+interface CartState {
+  cart: {
+      id: number;
+      title: string;
+      artist: string;
+      url: string;
+      originalPrice: number;
+      salePrice: number | null;
+      rating: number;
+      quantity: number;
+    }[];
+  quantity: number;
+}
+
+type Vinyl = {
+  id: number;
+  title: string;
+  artist: string;
+  url: string;
+  originalPrice: number;
+  salePrice: number | null;
+  rating: number;
+}
+
+
+
+const initialCartState: CartState = { cart: [], quantity: 0 };
 
 //Here we are allowed to mutate the state, because toolkit uses another package called imgur that detects code like this and automatically clones the existing stae, creates new state object, keep all state we aren't editing and overwrite the state we are editing in an inmmutable way
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
   reducers: {
-    addToCart(state, action) {
+    addToCart: (state, action: PayloadAction<Vinyl>) => {
       state.cart.push({ ...action.payload, quantity: 1 });
       state.quantity += 1;
     },
-    increment(state, action) {
+    increment(state, action: PayloadAction<Vinyl>) {
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id,
       );

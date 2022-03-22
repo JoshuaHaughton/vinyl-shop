@@ -1,5 +1,15 @@
 // FAKE DATA
-export const vinyls = [
+type Vinyls = {
+  id: number;
+  title: string;
+  artist: string;
+  url: string;
+  originalPrice: number;
+  salePrice: number | null;
+  rating: number;
+}[]
+
+export const vinyls: Vinyls = [
   {
     id: 1,
     title: "Happier Than Ever",

@@ -1,6 +1,9 @@
-import React from 'react'
+interface Props {
+  salePrice: number | null;
+  originalPrice: number
+}
 
-export default function Price({ salePrice, originalPrice }) {
+export default function Price({ salePrice, originalPrice }: Props): JSX.Element {
   return (
     <div className="vinyl__price">
         {salePrice ? (

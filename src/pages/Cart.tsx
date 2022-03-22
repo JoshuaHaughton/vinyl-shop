@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/EmptyCart.png";
 import ErrorModal from "../components/ui/ErrorModal";
@@ -6,53 +6,75 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 import { useEffect } from "react";
 
+type State = {
+  cart: {
+    cart: {
+      id: number;
+      title: string;
+      artist: string;
+      url: string;
+      originalPrice: number;
+      salePrice: number;
+      rating: number;
+      quantity: number;
+    }[];
+    quantity: number;
+  };
+};
+
+interface ErrorState {
+  title: string;
+  message: string;
+}
+
 const Cart = () => {
-  const [error, setError] = useState();
-  const [cartSubtotal, setCartSubtotal] = useState(0);
-  const [cartTax, setCartTax] = useState(0);
+  const [error, setError] = useState<ErrorState | null>();
+  const [cartSubtotal, setCartSubtotal] = useState<number>(0);
+  const [cartTax, setCartTax] = useState<number>(0);
   const [cartTotal, setCartTotal] = useState(0);
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart.cart)
-
-
-  const subtotal = () => {
-    let price = 0;
-    cart.forEach((item) => {
-      price += +((item.salePrice || item.originalPrice) * +item.quantity);
-    });
-    return price.toFixed(2);
-  };
-
-  const tax = () => {
-    const total = subtotal() * 1.13;
-    const tax = total - subtotal();
-    return tax.toFixed(2);
-  };
+  const cart = useSelector((state: State) => state.cart.cart);
 
   const clickHandler = () => {
     setError({
       title: "Not implemented",
-      message: `Sorry, this feature hasn't been implemented yet :(`
-    })
-  }
+      message: `Sorry, this feature hasn't been implemented yet :(`,
+    });
+  };
 
-  const errorHandler = () => {
+  const errorHandler = (): void => {
     setError(null);
-  }
+  };
 
   useEffect(() => {
-    setCartSubtotal(subtotal())
-    setCartTax(tax())
-    setCartTotal((+subtotal() + +tax()).toFixed(2))
-  }, [cart])
+    const tax = () => {
+      const total: number = subtotal() * 1.13;
+      const tax = total - subtotal();
+      return tax.toFixed(2);
+    };
+
+    const subtotal = (): number => {
+      let price = 0;
+      cart.forEach((item) => {
+        price += +((item.salePrice || item.originalPrice) * +item.quantity);
+      });
+      return Number(price.toFixed(2));
+    };
+
+    setCartSubtotal(subtotal());
+    setCartTax(Number(tax()));
+    setCartTotal(Number((+subtotal() + +tax()).toFixed(2)));
+  }, [cart]);
 
   return (
     <>
-      {error && <ErrorModal 
-        title={error.title}
-        message={error.message}
-        onConfirm={errorHandler}
-      />}
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <div id="vinyls_body">
         <main id="vinyls__main">
           <div className="vinyls__container">
@@ -88,7 +110,9 @@ const Cart = () => {
                             </span>
                             <button
                               className="cart__vinyl--remove"
-                              onClick={() => dispatch(cartActions.removeVinyl(vinyl))}
+                              onClick={() =>
+                                dispatch(cartActions.removeVinyl(vinyl))
+                              }
                             >
                               Remove
                             </button>
@@ -102,7 +126,12 @@ const Cart = () => {
                             className="cart__input"
                             value={vinyl.quantity}
                             onChange={(e) =>
-                              dispatch(cartActions.changeQuantity({id: vinyl.id, newQuantity: e.target.value}))
+                              dispatch(
+                                cartActions.changeQuantity({
+                                  id: vinyl.id,
+                                  newQuantity: e.target.value,
+                                }),
+                              )
                             }
                           />
                         </div>
@@ -141,10 +170,7 @@ const Cart = () => {
                     <span>Total</span>
                     <span>${cartTotal}</span>
                   </div>
-                  <button
-                    className="btn btn__checkout"
-                    onClick={clickHandler}
-                  >
+                  <button className="btn btn__checkout" onClick={clickHandler}>
                     Proceed to checkout
                   </button>
                 </div>

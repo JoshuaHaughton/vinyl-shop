@@ -1,13 +1,22 @@
-import React from "react";
 import { createPortal } from "react-dom";
 import classes from "./ErrorModal.module.css";
 
+interface Props {
+  title: string;
+  message: string;
+  onConfirm: () => void;
+}
+
+interface BackdropProps {
+  onConfirm: () => void;
+}
+
 //Backrop and ModalOverlay created here since I don't use them on any other component
-const Backdrop = (props) => {
-  return <div className={classes.backdrop} onClick={props.onConfirm} />;
+const Backdrop = (props: BackdropProps): JSX.Element => {
+  return <div className={classes.backdrop} onClick={() => props.onConfirm} />;
 };
 
-const ModalOverlay = (props) => {
+const ModalOverlay = (props: Props): JSX.Element => {
   return (
     <div className={`${classes.modal} ${classes.card}`}>
       <header className={classes.header}>
@@ -18,25 +27,25 @@ const ModalOverlay = (props) => {
         <p>Have a great day!</p>
       </div>
       <footer className={classes.actions}>
-        <button className={classes.button} onClick={props.onConfirm}>Okay</button>
+        <button className={classes.button} onClick={() => props.onConfirm}>Okay</button>
       </footer>
     </div>
   );
 };
 
-const ErrorModal = (props) => {
+const ErrorModal = (props: Props): JSX.Element => {
   return (
     <>
       {createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
-        document.getElementById("backdrop-root"),
+        <Backdrop onConfirm={() => props.onConfirm} />,
+        document.getElementById("backdrop-root")!,
       )}
       {createPortal(
         <ModalOverlay
           title={props.title}
           message={props.message}
           onConfirm={props.onConfirm}
-        />, document.getElementById('overlay-root')
+        />, document.getElementById('overlay-root')!
       )}
     </>
   );

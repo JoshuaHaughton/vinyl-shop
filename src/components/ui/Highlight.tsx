@@ -1,6 +1,11 @@
-import React from 'react'
 
-const Highlight = ({ icon, title, para }) => {
+interface Props {
+  icon: JSX.Element;
+  title: string;
+  para: string;
+}
+
+const Highlight = ({ icon, title, para }: Props): JSX.Element => {
   return (
     <div className="highlight">
       <div className="highlight__img">

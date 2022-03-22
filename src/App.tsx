@@ -9,7 +9,6 @@ import Cart from "./pages/Cart";
 import ScrollToTop from "./components/ui/ScrollToTop";
 
 function App() {
-
   return (
     <Router>
       <ScrollToTop>
@@ -17,21 +16,9 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/vinyls" element={<Vinyls vinyls={vinyls} />} />
-            <Route
-              path="/vinyls/:id"
-              element={
-                <VinylInfo vinyls={vinyls} />
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <Cart
-                  vinyls={vinyls}
-                />
-              }
-            />
+            <Route path="/vinyls" element={<Vinyls initialVinyls={vinyls} />} />
+            <Route path="/vinyls/:id" element={<VinylInfo vinyls={vinyls} />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
           <Footer />
         </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import Vinyl from './ui/Vinyl'
 import { vinyls } from '../data'
 

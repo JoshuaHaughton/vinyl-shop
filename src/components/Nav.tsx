@@ -1,14 +1,29 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
 
+type State = {
+  cart: {
+    cart: {
+      id: number;
+      title: string;
+      artist: string;
+      url: string;
+      originalPrice: number;
+      salePrice: number;
+      rating: number;
+      quantity: number;
+    }[];
+    quantity: number;
+  };
+};
+
 const Nav = () => {
-  let numberOfItems = useSelector(state => state.cart.quantity)
-  
+  let numberOfItems = useSelector((state: State) => state.cart.quantity);
+
   const openMenu = () => {
-    document.body.classList += " menu--open";
+    document.body.classList.value += " menu--open";
   };
 
   const closeMenu = () => {
@@ -23,14 +38,20 @@ const Nav = () => {
         </Link>
         <ul className="nav__links">
           <li className="nav__list">
-            <Link to="/" className="nav__link link__hover-effect
-              link__hover-effect--black">
+            <Link
+              to="/"
+              className="nav__link link__hover-effect
+              link__hover-effect--black"
+            >
               Home
             </Link>
           </li>
           <li className="nav__list">
-            <Link to="/vinyls" className="nav__link link__hover-effect
-              link__hover-effect--black">
+            <Link
+              to="/vinyls"
+              className="nav__link link__hover-effect
+              link__hover-effect--black"
+            >
               Vinyls
             </Link>
           </li>
@@ -39,7 +60,7 @@ const Nav = () => {
           </button>
           <li className="nav__icon">
             <Link to="/cart" className="nav__link nav__icon--link">
-              <FontAwesomeIcon icon="shopping-cart" className="shopping-cart"/>
+              <FontAwesomeIcon icon="shopping-cart" className="shopping-cart" />
             </Link>
             {numberOfItems > 0 && (
               <span className="cart__length">{numberOfItems}</span>

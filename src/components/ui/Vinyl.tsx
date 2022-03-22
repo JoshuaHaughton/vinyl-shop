@@ -1,17 +1,29 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 import Price from "./Price";
 
-const Vinyl = ({ vinylInfo }) => {
-  const [img, setImg] = useState();
+interface Props {
+  vinylInfo: {
+    id: number;
+    title: string;
+    artist: string;
+    url: string;
+    originalPrice: number;
+    salePrice: number | null;
+    rating: number;
+  };
+}
+
+const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
+  const [img, setImg] = useState<HTMLImageElement>();
 
   //whole component doesn't re-render with useRef unlike useState
   const mountedRef = useRef(true);
 
   //loads skeleton image in place of vinyls until they load
   useEffect(() => {
-    const image = new Image();
+    let image = new Image()!;
     image.src = vinylInfo.url;
     image.onload = () => {
       if (mountedRef.current) {
@@ -40,7 +52,7 @@ const Vinyl = ({ vinylInfo }) => {
           </div>
           <Rating rating={vinylInfo.rating} />
           <Price
-            salePrice={vinylInfo.salePrice}
+            salePrice={vinylInfo.salePrice && vinylInfo.salePrice}
             originalPrice={vinylInfo.originalPrice}
           />
         </>

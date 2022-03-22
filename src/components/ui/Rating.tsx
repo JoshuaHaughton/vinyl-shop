@@ -1,8 +1,12 @@
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
 
-export default function Rating( {rating} ) {
+interface Props {
+  rating: number
+}
+
+
+const Rating = ( {rating}:Props ): JSX.Element => {
 
 
   const fullStars = new Array(Math.floor(rating / 2))
@@ -38,3 +42,5 @@ export default function Rating( {rating} ) {
       </div>
   )
 }
+
+export default Rating;

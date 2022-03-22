@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Price from "../components/ui/Price";
 import Rating from "../components/ui/Rating";
@@ -7,22 +6,65 @@ import Vinyl from "../components/ui/Vinyl";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 
-const VinylInfo = ({ vinyls }) => {
-  const { id } = useParams();
+interface Props {
+  vinyls: {
+    id: number;
+    title: string;
+    artist: string;
+    url: string;
+    originalPrice: number;
+    salePrice: number | null;
+    rating: number;
+  }[]
+}
+
+type VinylType = {
+  id: number;
+  title: string;
+  artist: string;
+  url: string;
+  originalPrice: number;
+  salePrice: number | null;
+  rating: number;
+}
+
+type State = {
+  cart: {
+    cart: {
+      id: number;
+      title: string;
+      artist: string;
+      url: string;
+      originalPrice: number;
+      salePrice: number | null;
+      rating: number;
+      quantity: number;
+    }[];
+  quantity: number;
+  }
+}
+
+const VinylInfo = ({ vinyls }: Props): JSX.Element => {
+  const { id } = useParams<any>();
+
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart.cart)
+  const cart = useSelector((state: State) => state.cart.cart)
   console.log(cart);
 
 
-  const thisVinyl = vinyls.find((vinyl) => +vinyl.id === +id);
+  const thisVinyl = vinyls.find((vinyl: VinylType) => {
+    return +vinyl.id === +id!;
+  }) as VinylType
 
 
-  const addVinylToCart = (vinyl) => {
+  const addVinylToCart = (vinyl: VinylType) => {
     dispatch(cartActions.addToCart(vinyl))
   };
 
-  const vinylExistsInCart = () => {
-    return cart.find(vinyl => +vinyl.id === +id)
+  const vinylExistsInCart = (id: number | string | undefined) => {
+    if (id) {
+      return cart.find(vinyl => +vinyl.id === +id)
+    }
   }
 
   return (
@@ -70,7 +112,7 @@ const VinylInfo = ({ vinyls }) => {
                     Magni quisquam atque commodi magnam dolor?
                   </p>
                 </div>
-                {vinylExistsInCart() ? (
+                {vinylExistsInCart(id) ? (
                   <Link to="/cart"> <button className="btn">Checkout</button></Link>
                 ) : (
                   <button
@@ -94,7 +136,7 @@ const VinylInfo = ({ vinyls }) => {
             <div className="vinyls">
               {vinyls
                 .filter(
-                  (vinyl) => vinyl.rating > 8 && +vinyl.id !== +thisVinyl.id,
+                  (vinyl: VinylType) => vinyl.rating > 8 && +vinyl.id !== +thisVinyl.id,
                 )
                 .slice(0, 4)
                 .map((vinyl) => (

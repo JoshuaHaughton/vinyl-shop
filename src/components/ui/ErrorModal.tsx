@@ -13,7 +13,7 @@ interface BackdropProps {
 
 //Backrop and ModalOverlay created here since I don't use them on any other component
 const Backdrop = (props: BackdropProps): JSX.Element => {
-  return <div className={classes.backdrop} onClick={() => props.onConfirm} />;
+  return <div className={classes.backdrop} onClick={() => props.onConfirm()} />;
 };
 
 const ModalOverlay = (props: Props): JSX.Element => {
@@ -27,7 +27,7 @@ const ModalOverlay = (props: Props): JSX.Element => {
         <p>Have a great day!</p>
       </div>
       <footer className={classes.actions}>
-        <button className={classes.button} onClick={() => props.onConfirm}>Okay</button>
+        <button className={classes.button} onClick={() => props.onConfirm()}>Okay</button>
       </footer>
     </div>
   );
@@ -37,7 +37,7 @@ const ErrorModal = (props: Props): JSX.Element => {
   return (
     <>
       {createPortal(
-        <Backdrop onConfirm={() => props.onConfirm} />,
+        <Backdrop onConfirm={() => props.onConfirm()} />,
         document.getElementById("backdrop-root")!,
       )}
       {createPortal(

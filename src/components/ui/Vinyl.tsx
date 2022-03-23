@@ -8,10 +8,11 @@ interface Props {
     id: number;
     title: string;
     artist: string;
-    url: string;
+    url?: string;
     originalPrice: number;
     salePrice: number | null;
     rating: number;
+    genres: string[]
   };
 }
 
@@ -24,17 +25,23 @@ const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
   //loads skeleton image in place of vinyls until they load
   useEffect(() => {
     let image = new Image()!;
-    image.src = vinylInfo.url;
-    image.onload = () => {
-      if (mountedRef.current) {
-        setImg(image);
-      }
-    };
-    return () => {
-      //when the component unmounts
-      mountedRef.current = false;
-    };
-  });
+    if (vinylInfo.url) {
+      console.log('i have url now');
+      image.src = vinylInfo.url || 'null';
+      console.log(vinylInfo, 'load');
+      image.onload = () => {
+        console.log('img load');
+        if (vinylInfo.url) {
+          setImg(image);
+        }
+      };
+
+    }
+    // return () => {
+    //   //when the component unmounts
+    //   mountedRef.current = false;
+    // };
+  }, [vinylInfo]);
 
   return (
     <div className="vinyl">

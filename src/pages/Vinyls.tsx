@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Vinyl from "../components/ui/Vinyl";
+import { skeletonVinyls } from "../skeletonData";
 
-interface Props {
-  initialVinyls: {
+interface VinylInterface {
     id: number;
     title: string;
     artist: string;
@@ -10,12 +12,41 @@ interface Props {
     originalPrice: number;
     salePrice: number | null;
     rating: number;
-  }[]
+    genres: string[]
+  }
+
+interface State {
+  vinyls: {
+    vinyls: {
+        id: number;
+        title: string;
+        artist: string;
+        url: string;
+        originalPrice: number;
+        salePrice: number | null;
+        rating: number;
+        genres: string[]
+      }[];
+  }
 }
 
-const Vinyls = ({ initialVinyls }: Props): JSX.Element => {
-  const [vinyls, setVinyls] = useState(initialVinyls);
 
+
+const Vinyls = (): JSX.Element => {
+  const initialVinyls: VinylInterface[] = useSelector((state: State) => state.vinyls.vinyls);
+  const [vinyls, setVinyls] = useState<VinylInterface[]>(initialVinyls || []);
+  console.log('init', initialVinyls);
+  console.log(vinyls.length >= 1);
+  console.log(vinyls);
+
+
+  useEffect(() => {
+    setVinyls(initialVinyls);
+    
+  }, [initialVinyls])
+
+  
+  
   const filterVinyls = (filter: string) => {
     console.log(filter);
     if (filter === "LOW_TO_HIGH") {
@@ -68,9 +99,15 @@ const Vinyls = ({ initialVinyls }: Props): JSX.Element => {
                 </select>
               </div>
               <div className="vinyls">
-                {vinyls.map((vinyl) => (
+                {vinyls.length >= 1 
+                ? 
+                vinyls.map((vinyl) => (
                   <Vinyl vinylInfo={vinyl} key={vinyl.id} />
-                ))}
+                )):
+                skeletonVinyls.map((vinyl) => (
+                  <Vinyl vinylInfo={vinyl} key={vinyl.id} />
+                ))
+                }
               </div>
             </div>
           </div>

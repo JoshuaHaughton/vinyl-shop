@@ -5,11 +5,12 @@ interface CartState {
       id: number;
       title: string;
       artist: string;
-      url: string;
+      url?: string;
       originalPrice: number;
       salePrice: number | null;
       rating: number;
       quantity: number;
+      genres: string[]
     }[];
   quantity: number;
 }
@@ -18,10 +19,11 @@ type Vinyl = {
   id: number;
   title: string;
   artist: string;
-  url: string;
+  url?: string;
   originalPrice: number;
   salePrice: number | null;
   rating: number;
+  genres: string[]
 }
 
 

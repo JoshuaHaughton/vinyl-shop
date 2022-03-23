@@ -14,6 +14,7 @@ type State = {
       salePrice: number;
       rating: number;
       quantity: number;
+      genres: string[]
     }[];
     quantity: number;
   };

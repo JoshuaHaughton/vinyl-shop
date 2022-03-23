@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/EmptyCart.png";
-import ErrorModal from "../components/ui/ErrorModal";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 import { useEffect } from "react";
+import ErrorModal from "../components/ui/Modals/ErrorModals/ErrorModal";
 
 type State = {
   cart: {

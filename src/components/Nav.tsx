@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import AuthModal from "./ui/Modals/AuthModal/AuthModal";
 
 type State = {
   cart: {
@@ -21,6 +23,16 @@ type State = {
 };
 
 const Nav = () => {
+
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
+  const [navLoggedIn, setNavLoggedIn] = useState(false)
+  // const { isLoggedIn, setIsLoggedIn, logout, checkServerIfLogged } = useAuth();
+
+  // const location = useLocation();
+
+
   let numberOfItems = useSelector((state: State) => state.cart.quantity);
 
   const openMenu = () => {
@@ -31,7 +43,50 @@ const Nav = () => {
     document.body.classList.remove("menu--open");
   };
 
+  const openSuccessModalHandler = () => {
+    setOpenSuccessModal(true)
+  }
+
+  const closeAuthModalHandler = () => {
+    setOpenAuthModal(false)
+  }
+
+  const openAuthModalHandler = () => {
+    setOpenAuthModal(true)
+  }
+
+  const navLoginHandler = () => {
+    setNavLoggedIn(true)
+  }
+
+
+
   return (
+    <>
+    {/* {openSuccessModal && (
+      <SuccessModal
+        title={isSignUp ? "Sign Up Successful!" : "Log In Successful!"}
+        message={
+          isSignUp
+            ? "Thank you for signing up!"
+            : "Welcome Back! Login Successful."
+        }
+        closeModal={closeSuccessModalHandler}
+        openModal={openSuccessModalHandler}
+        isSignUp={isSignUp}
+      />
+    )} */}
+    {openAuthModal && (
+      <AuthModal
+        title={"test title"}
+        message={"test message"}
+        closeModal={closeAuthModalHandler}
+        openSuccessModal={openSuccessModalHandler}
+        isSignUp={isSignUp}
+        setIsSignUp={setIsSignUp}
+        navLogin={navLoginHandler}
+      />
+    )}
     <nav>
       <div className="nav__container">
         <Link to="/">
@@ -55,6 +110,15 @@ const Nav = () => {
             >
               Vinyls
             </Link>
+          </li>
+          <li className="nav__list">
+            <button
+              className="nav__link link__hover-effect
+              link__hover-effect--black"
+              onClick={openAuthModalHandler}
+            >
+              Log in/Sign up
+            </button>
           </li>
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="bars" />
@@ -84,6 +148,11 @@ const Nav = () => {
               </Link>
             </li>
             <li className="menu__list" onClick={closeMenu}>
+              <button className="menu__link" onClick={openAuthModalHandler}>
+                Login/Signup
+              </button>
+            </li>
+            <li className="menu__list" onClick={closeMenu}>
               <Link to="/cart" className="menu__link">
                 Cart
               </Link>
@@ -92,6 +161,7 @@ const Nav = () => {
         </div>
       </div>
     </nav>
+    </>
   );
 };
 

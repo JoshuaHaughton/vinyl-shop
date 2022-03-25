@@ -8,9 +8,11 @@ import VinylInfo from "./pages/VinylInfo";
 import Cart from "./pages/Cart";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import { useEffect, useState } from "react";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { vinylActions } from "./store/vinyls";
+import { login } from "./components/ui/Modals/AuthModal/authHelpers";
+import { reduxLogin, reduxLogout } from "./store/auth";
 
 interface Vinyls {
   id: number;
@@ -45,6 +47,23 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
+    auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        //User is logged in
+        console.log(userAuth);
+        dispatch(reduxLogin({
+          uid: userAuth.uid,
+          full_name: userAuth.displayName,
+        }))
+        
+      } else {
+        //User isn't logged in
+        dispatch(reduxLogout())
+      } 
+    })
+
+    
     db.collection("vinyls")
       .orderBy("id", "desc")
       .onSnapshot((snapshot) =>
@@ -57,6 +76,8 @@ function App() {
         ))
       }
       );
+
+
   }, []);
   return (
     <Router>

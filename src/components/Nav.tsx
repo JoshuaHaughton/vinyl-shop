@@ -4,6 +4,7 @@ import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import AuthModal from "./ui/Modals/AuthModal/AuthModal";
+import SuccessModal from "./ui/Modals/SuccessModal/SuccessModal";
 
 type State = {
   cart: {
@@ -47,6 +48,10 @@ const Nav = () => {
     setOpenSuccessModal(true)
   }
 
+  const closeSuccessModalHandler = () => {
+    setOpenSuccessModal(false)
+  }
+
   const closeAuthModalHandler = () => {
     setOpenAuthModal(false)
   }
@@ -60,10 +65,9 @@ const Nav = () => {
   }
 
 
-
   return (
     <>
-    {/* {openSuccessModal && (
+    {openSuccessModal && (
       <SuccessModal
         title={isSignUp ? "Sign Up Successful!" : "Log In Successful!"}
         message={
@@ -72,10 +76,8 @@ const Nav = () => {
             : "Welcome Back! Login Successful."
         }
         closeModal={closeSuccessModalHandler}
-        openModal={openSuccessModalHandler}
-        isSignUp={isSignUp}
       />
-    )} */}
+    )}
     {openAuthModal && (
       <AuthModal
         title={"test title"}

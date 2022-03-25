@@ -6,6 +6,11 @@ import { useEffect, useState } from "react";
 // import useInputValidate from "../../../hooks/input-validation";
 import classes from "./AuthModal.module.css";
 import useInputValidate from "../../../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { login, signup } from "./authHelpers";
+import { reduxLogin } from "../../../../store/auth";
+
+
 
 interface Props {
   isSignUp: boolean
@@ -20,8 +25,10 @@ interface Props {
 const ModalOverlay = (props: Props): JSX.Element => {
   const [error, setError] = useState(null);
   const [nameTouched, setNameTouched] = useState(false)
+  const [loading, setLoading] = useState(false)
   // const { signup, login, authLoading } = useAuth();
   const { isSignUp, setIsSignUp } = props;
+  const dispatch = useDispatch();
 
   const {
     value: enteredName,
@@ -78,95 +85,118 @@ const ModalOverlay = (props: Props): JSX.Element => {
   );
 
 
-  // const submitHandler = async (e) => {
-  //   e.preventDefault();
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //   //If Signup Form is enabled
-  //   if (isSignUp) {
-  //     // Sets all input fields to touched on submission so an error comes up if it is invalid
-  //     nameSubmitHandler();
-  //     emailSubmitHandler();
-  //     passwordSubmitHandler();
-  //     passwordConfirmSubmitHandler();
+    //If Signup Form is enabled
+    if (isSignUp) {
+      // Sets all input fields to touched on submission so an error comes up if it is invalid
+      nameSubmitHandler();
+      emailSubmitHandler();
+      passwordSubmitHandler();
+      passwordConfirmSubmitHandler();
 
-  //     //If a field is invalid, cancel submission
-  //     if (
-  //       !enteredNameIsValid ||
-  //       !enteredEmailIsValid ||
-  //       !enteredPasswordIsValid ||
-  //       !enteredPasswordConfirmIsValid
-  //     ) {
-  //       return;
-  //     }
-
-
-  //     //Else if Login form is enabled
-  //   } else {
-
-  //     //Login only requires email and password
-  //     emailSubmitHandler();
-  //     passwordSubmitHandler();
-
-  //     //If a field is invalid, cancel submission
-  //     if (!enteredEmailIsValid || !enteredPasswordIsValid) {
-  //       return;
-  //     }
-  //   }
+      //If a field is invalid, cancel submission
+      if (
+        !enteredNameIsValid ||
+        !enteredEmailIsValid ||
+        !enteredPasswordIsValid ||
+        !enteredPasswordConfirmIsValid
+      ) {
+        return;
+      }
 
 
+      //Else if Login form is enabled
+    } else {
 
-  //   //If everything passes validation and works, attempt to submit
+      //Login only requires email and password
+      emailSubmitHandler();
+      passwordSubmitHandler();
 
-  //   if (isSignUp) {
-  //     //If signup form, attempt to signup
-
-
-  //     // setLoading(true)
-  //     const response = await signup(enteredName, enteredEmail, enteredPassword, setError, resetEmailInput);
-
-  //     const success = response.status === 200;
-
-  //     // setLoading(false)
-
-  //     //If successfull reset form inputs
-  //     if (success) {
-
-  //       resetNameInput();
-  //       resetEmailInput();
-  //       resetPasswordInput();
-  //       resetPasswordConfirmInput();
-
-  //       props.openSuccessModal();
-  //       props.navLogin();
-  //       props.closeModal();
-
-  //       //Signed Up!
-  //     }
-  //   } else {
-  //     //If Login form, attempt to Login
-
-  //     // setLoading(true)
-
-  //     const response = await login(enteredEmail, enteredPassword, resetEmailInput, resetPasswordInput, setError);
-
-  //     const success = response.status === 200;
+      //If a field is invalid, cancel submission
+      if (!enteredEmailIsValid || !enteredPasswordIsValid) {
+        return;
+      }
+    }
 
 
-  //     //If successfull, reset form inputs
-  //     if (success) {
 
-  //       resetEmailInput();
-  //       resetPasswordInput();
+    //If everything passes validation and works, attempt to submit
 
-  //       props.openSuccessModal();
-  //       props.navLogin();
-  //       props.closeModal();
+    if (isSignUp) {
+      //If signup form, attempt to signup
 
-  //       //Logged In!
-  //     }
 
-  //   }
-  // };
+      // setLoading(true)
+      const response = await signup(enteredName, enteredEmail, enteredPassword, setError, resetEmailInput, setLoading, reduxLogin, dispatch);
+
+      console.log('firebase signup function response', response);
+      const success = response?.status === 200;
+
+      // setLoading(false)
+
+      //If successfull reset form inputs
+      if (success) {
+
+        resetNameInput();
+        resetEmailInput();
+        resetPasswordInput();
+        resetPasswordConfirmInput();
+
+        props.openSuccessModal();
+        props.navLogin();
+        props.closeModal();
+
+        //Signed Up!
+      }
+    } else {
+      //If Login form, attempt to Login
+
+      const response = await login(enteredEmail, enteredPassword, setError, emailSubmitHandler, passwordSubmitHandler, dispatch, reduxLogin, setLoading);
+
+      console.log('firebase signup function response', response);
+      const success = response?.status === 200;
+
+      // setLoading(false)
+
+      //If successfull reset form inputs
+      if (success) {
+
+        resetNameInput();
+        resetEmailInput();
+        resetPasswordInput();
+        resetPasswordConfirmInput();
+
+        props.openSuccessModal();
+        props.navLogin();
+        props.closeModal();
+
+        //Logged In!
+      }
+
+      // setLoading(true)
+
+      // const response = await login(enteredEmail, enteredPassword, resetEmailInput, resetPasswordInput, setError);
+
+      // const success = response.status === 200;
+
+
+      // //If successfull, reset form inputs
+      // if (success) {
+
+      //   resetEmailInput();
+      //   resetPasswordInput();
+
+      //   props.openSuccessModal();
+      //   props.navLogin();
+      //   props.closeModal();
+
+      //   //Logged In!
+      // }
+
+    }
+  };
 
   //Toggle form between Signup and Login
   
@@ -211,8 +241,8 @@ const ModalOverlay = (props: Props): JSX.Element => {
 
       <div className={classes.content}>
         <div className={classes.row}>
-          <form className={classes.form} >
-          {/* <form className={classes.form} onSubmit={submitHandler}> */}
+          {/* <form className={classes.form} > */}
+          <form className={classes.form} onSubmit={submitHandler}>
             {isSignUp && (
               <div className={nameInputClasses}>
                 <input
@@ -283,7 +313,7 @@ const ModalOverlay = (props: Props): JSX.Element => {
               </div>
             )}
 
-           {/* {authLoading ? 
+           {loading ? 
            <button className={classes.loadingButton}>
              <FontAwesomeIcon icon={faSpinner} className={classes.spinner}/>
            </button>
@@ -291,7 +321,7 @@ const ModalOverlay = (props: Props): JSX.Element => {
            <button className={classes.button}>
               {isSignUp ? `Sign Up` : `Log In`}
             </button>
-            } */}
+            }
             {error && <p className={classes.formError}>{error}</p>}
           </form>
           

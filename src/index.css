@@ -253,6 +253,11 @@ button:active {
   color: white;
 }
 
+.nav__button {
+  background-color: transparent;
+  border: none;
+}
+
 
 /* 
 

@@ -1,12 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import AuthModal from "./ui/Modals/AuthModal/AuthModal";
 import SuccessModal from "./ui/Modals/SuccessModal/SuccessModal";
+import { reduxLogout } from "../store/auth";
 
-type State = {
+type CartState = {
   cart: {
     cart: {
       id: number;
@@ -23,19 +24,30 @@ type State = {
   };
 };
 
+type AuthState = {
+    auth: {
+      isLogged: boolean
+      full_name: string | null
+      uid: string | null
+    }
+}
+
+
+
 const Nav = () => {
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
   const [navLoggedIn, setNavLoggedIn] = useState(false)
+  const dispatch = useDispatch();
   // const { isLoggedIn, setIsLoggedIn, logout, checkServerIfLogged } = useAuth();
 
   // const location = useLocation();
 
 
-  let numberOfItems = useSelector((state: State) => state.cart.quantity);
-
+  let numberOfItems = useSelector((state: CartState) => state.cart.quantity);
+  let isLogged = useSelector((state: AuthState) => state.auth.isLogged)
   const openMenu = () => {
     document.body.classList.value += " menu--open";
   };
@@ -113,15 +125,25 @@ const Nav = () => {
               Vinyls
             </Link>
           </li>
-          <li className="nav__list">
+         {!isLogged &&  <li className="nav__list">
             <button
               className="nav__link link__hover-effect
-              link__hover-effect--black"
+              link__hover-effect--black nav__button"
               onClick={openAuthModalHandler}
             >
               Log in/Sign up
             </button>
-          </li>
+          </li>}
+
+          {isLogged &&  <li className="nav__list">
+            <button
+              className="nav__link link__hover-effect
+              link__hover-effect--black nav__button"
+              onClick={() => dispatch(reduxLogout())}
+            >
+              Logout
+            </button>
+          </li>}
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="bars" />
           </button>

@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthModal from "./ui/Modals/AuthModal/AuthModal";
 import SuccessModal from "./ui/Modals/SuccessModal/SuccessModal";
 import { reduxLogout } from "../store/auth";
+import { auth, db } from "../firebase";
+import { cartActions } from "../store/cart";
 
 type CartState = {
   cart: {
@@ -40,14 +42,17 @@ const Nav = () => {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
   const [navLoggedIn, setNavLoggedIn] = useState(false)
+  const [authDataFetched, setAuthDataFetched] = useState(false);
   const dispatch = useDispatch();
   // const { isLoggedIn, setIsLoggedIn, logout, checkServerIfLogged } = useAuth();
 
   // const location = useLocation();
 
 
-  let numberOfItems = useSelector((state: CartState) => state.cart.quantity);
-  let isLogged = useSelector((state: AuthState) => state.auth.isLogged)
+  const numberOfItems = useSelector((state: CartState) => state.cart.quantity);
+  const cart = useSelector((state: CartState) => state.cart.cart);
+  const isLogged = useSelector((state: AuthState) => state.auth.isLogged)
+  const uid = useSelector((state: AuthState) => state.auth.uid)
   const openMenu = () => {
     document.body.classList.value += " menu--open";
   };
@@ -75,6 +80,67 @@ const Nav = () => {
   const navLoginHandler = () => {
     setNavLoggedIn(true)
   }
+
+  const logoutHandler = () => {
+    dispatch(reduxLogout())
+    auth.signOut()
+    .then(() => {
+      console.log('signed out');
+      dispatch(cartActions.setCart({cart: [], quantity: 0}))
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  const firstRender = useRef(true)
+
+  useEffect(() => {
+
+    
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+  if (uid) {
+    const userCart = db.collection('cart').doc(uid!);
+    const changeBackendCart = async () => {
+      //check if cart with their id already exists before this vvvv
+      
+      
+    
+    
+      // const userCart = db.collection('cart').doc(uid!);
+    
+      userCart.get()
+        .then((docSnapshot) => {
+          if (docSnapshot.exists) {
+            db.collection("cart").doc(uid!).set({
+              cart: cart,
+              quantity: numberOfItems,
+              uid,
+            },
+            {merge: true});
+            console.log('merged');
+            
+            // userCart.onSnapshot((doc) => {
+            //   // do stuff with the data
+            // });
+          } else {
+            userCart.set({cart: cart,
+              quantity: numberOfItems,
+              uid,}) // create the document
+              console.log('created');
+          }
+      });
+  
+ 
+  }
+  changeBackendCart()
+
+}
+  }, [cart])
 
 
   return (
@@ -139,7 +205,7 @@ const Nav = () => {
             <button
               className="nav__link link__hover-effect
               link__hover-effect--black nav__button"
-              onClick={() => dispatch(reduxLogout())}
+              onClick={logoutHandler}
             >
               Logout
             </button>

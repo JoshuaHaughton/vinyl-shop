@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 // import useInputValidate from "../../../hooks/input-validation";
 import classes from "./AuthModal.module.css";
 import useInputValidate from "../../../hooks/useInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "./authHelpers";
 import { reduxLogin } from "../../../../store/auth";
+import { db } from "../../../../firebase";
+import { cartActions } from "../../../../store/cart";
 
 
 
@@ -22,10 +24,19 @@ interface Props {
   openSuccessModal: () => void
 }
 
+type AuthState = {
+  auth: {
+    isLogged: boolean
+    full_name: string | null
+    uid: string | null
+  }
+}
+
 const ModalOverlay = (props: Props): JSX.Element => {
   const [error, setError] = useState(null);
   const [nameTouched, setNameTouched] = useState(false)
   const [loading, setLoading] = useState(false)
+  const uid = useSelector((state: AuthState) => state.auth.uid)
   // const { signup, login, authLoading } = useAuth();
   const { isSignUp, setIsSignUp } = props;
   const dispatch = useDispatch();
@@ -162,6 +173,10 @@ const ModalOverlay = (props: Props): JSX.Element => {
 
       //If successfull reset form inputs
       if (success) {
+
+      
+
+
 
         resetNameInput();
         resetEmailInput();

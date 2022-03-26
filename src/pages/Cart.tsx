@@ -158,22 +158,28 @@ const Cart = () => {
                 )}
               </div>
               {cart.length > 0 && (
-                <div className="total">
-                  <div className="total__item total__sub-total">
-                    <span>Subtotal</span>
-                    <span>${cartSubtotal}</span>
+                <div className="checkout">
+                  <form className="checkout__form">
+                    
+                  </form>
+
+                  <div className='total'>
+                    <div className="total__item total__sub-total">
+                      <span>Subtotal:</span>
+                      <span>${cartSubtotal}</span>
+                    </div>
+                    <div className="total__item total__tax">
+                      <span>Tax: (13%)</span>
+                      <span>${cartTax}</span>
+                    </div>
+                    <div className="total__item total__price">
+                      <span>Total:</span>
+                      <span>${cartTotal}</span>
+                    </div>
+                    <button className="btn btn__checkout" onClick={clickHandler}>
+                      Proceed to checkout
+                    </button>
                   </div>
-                  <div className="total__item total__tax">
-                    <span>Tax - (1.13%)</span>
-                    <span>${cartTax}</span>
-                  </div>
-                  <div className="total__item total__price">
-                    <span>Total</span>
-                    <span>${cartTotal}</span>
-                  </div>
-                  <button className="btn btn__checkout" onClick={clickHandler}>
-                    Proceed to checkout
-                  </button>
                 </div>
               )}
             </div>

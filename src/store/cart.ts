@@ -74,6 +74,11 @@ const cartSlice = createSlice({
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
       state.quantity -= action.payload.quantity;
     },
+    setCart(state, action) {
+      console.log('payload', action.payload)
+      state.cart = action.payload.cart
+      state.quantity = action.payload.quantity
+    }
   },
 });
 

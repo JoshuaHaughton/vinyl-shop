@@ -1,3 +1,4 @@
+import { doc, getDoc } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import Price from "../components/ui/Price";
@@ -9,6 +10,7 @@ import { skeletonVinyls } from "../skeletonData";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { db } from "../firebase";
 
 interface Props {
   vinyls: {
@@ -61,6 +63,11 @@ type State = {
         genres: string[]
       }[];
   }
+  auth: {
+    isLogged: boolean
+    full_name: string | null
+    uid: string | null
+  }
 }
 
 interface VinylInterface {
@@ -92,6 +99,7 @@ const VinylInfo = (): JSX.Element => {
   const [selectedImg, setSelectedImg] = useState<HTMLImageElement>();
 
   const vinyls: VinylInterface[] = useSelector((state: State) => state.vinyls.vinyls);
+  const uid = useSelector((state: State) => state.auth.uid);
 
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart)
@@ -103,9 +111,36 @@ const VinylInfo = (): JSX.Element => {
   }) as VinylType
 
 
-  const addVinylToCart = (vinyl: VinylType) => {
+  const addVinylToCart = async (vinyl: VinylType) => {
+
     dispatch(cartActions.addToCart(vinyl))
+
+
+
+
+// const docRef = doc(db, "cart", "LyVeJAxVQVVNbZ6UyIo3");
+// const docSnap = await getDoc(docRef);
+
+// if (docSnap.exists()) {
+//   console.log("Document data:", docSnap.data());
+// } else {
+//   // doc.data() will be undefined in this case
+//   console.log("No such document!");
+// }
+
   };
+
+  // useEffect(() => {
+  //   const changeBackendCart = async () => {
+  //     //check if cart with their id already exists before this vvvv
+  //     await db.collection("cart").doc(uid!).set({
+  //       cart: cart,
+  //       quantity: user.email,
+  //       uid,
+  //     });
+  //   }
+  //   changeBackendCart()
+  // }, [cart])
 
   const vinylExistsInCart = (id: number | string | undefined) => {
     if (id) {

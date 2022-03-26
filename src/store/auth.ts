@@ -34,7 +34,7 @@ interface State {
   auth: {
     isLogged: boolean
     full_name: string | null
-    id: string | null
+    uid: string | null
   }
   vinyls : {
     vinyls: {

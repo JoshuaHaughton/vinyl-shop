@@ -1,0 +1,74 @@
+.checkout {
+  display: flex;
+  padding: 0 24px;
+}
+
+.checkoutForm {
+  width: 40%;
+  margin-bottom: 24px;
+}
+
+.checkoutForm > h3 {
+  text-align: center;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.formRow > div  {
+  width: 100%;
+  /* flex-grow: 1; */
+  margin: 16px 8px;
+}
+
+.formRow > div > input {
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  max-width: 100%;
+  padding: 8px;
+}
+
+.formRow > div > select {
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  max-width: 100%;
+  padding: 8px;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* padding: 0 24px; */
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  font-size: 16px;
+}
+
+.checkoutButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.checkoutButtonWrapper > button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px;
+  width: 60%;
+  border-radius: 8px;
+}
+
+.shipping {
+  margin-top: 40px;
+}

@@ -14,6 +14,7 @@ import { vinylActions } from "./store/vinyls";
 import { login } from "./components/ui/Modals/AuthModal/authHelpers";
 import { reduxLogin, reduxLogout } from "./store/auth";
 import { cartActions } from "./store/cart";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 interface Vinyls {
   id: number;
@@ -145,6 +146,7 @@ function App() {
             <Route path="/vinyls" element={<Vinyls />} />
             <Route path="/vinyls/:id" element={<VinylInfo />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
           </Routes>
           <Footer />
         </div>

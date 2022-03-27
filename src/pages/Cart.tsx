@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EmptyCart from "../assets/EmptyCart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
@@ -46,6 +46,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart);
   const isLogged = useSelector((state: State) => state.auth.isLogged);
+  const  navigate = useNavigate();
   const uid = useSelector((state: State) => state.auth.uid);
 
   const {
@@ -183,9 +184,10 @@ const Cart = () => {
     setError(null);
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    console.log(cart, cartSubtotal, cartTotal);
 
     //Do validation using custom hook
 
@@ -199,42 +201,82 @@ const Cart = () => {
     provinceOrStateSubmitHandler()
     countrySubmitHandler()
     addressSubmitHandler()
+    unitSubmitHandler()
+    console.log('check');
 
      //If a field is invalid, cancel submission
-     if (!enteredEmailIsValid || !enteredFirstNameIsValid || !enteredLastNameIsValid || !enteredCompanyNameIsValid || !enteredPostalOrZipIsValid || !enteredCityIsValid || !enteredCountryIsValid || !enteredProvinceOrStateIsValid || !enteredAddressIsValid) {
+     if (!enteredEmailIsValid || !enteredFirstNameIsValid || !enteredLastNameIsValid || !enteredPostalOrZipIsValid || !enteredCityIsValid || !enteredCountryIsValid || !enteredProvinceOrStateIsValid || !enteredAddressIsValid) {
       return;
     }
 
+    console.log('check');
+    
+
     //If valid, continue
 
+   
 
 
-let timestamp = new Date();
+let timestamp = new Date().toDateString();
 let deliveryDateSeconds = (new Date().getTime() + 1209600000);
-let deliveryDate = new Date(deliveryDateSeconds).toString()
+let deliveryDate = new Date(deliveryDateSeconds).toDateString()
 console.log(timestamp);
 console.log(deliveryDate);
 console.log(cart);
 
+
 //Get delivery date to readable or mutatable 2 week format. I want to be able to render date in an apealing way
 
-    // db.collection("orders").add({
-    //   firstName: enteredFirstName,
-    //   lastName: enteredFirstName,
-    //   companyName: enteredCompanyName || null,
-    //   address: enteredAddress,
-    //   unit: enteredUnit || null,
-    //   city: enteredCity,
-    //   postalOrZip: enteredPostalOrZip,
-    //   provinceOrState: enteredProvinceOrState,
-    //   country: enteredCountry,
-    //   timestamp,
-    //   deliveryDate: new Date(deliveryDate).toString()
-    //   uid,
-    //   order: cart
-    // });
+let order = {
+  firstName: enteredFirstName,
+  lastName: enteredLastName,
+  email: enteredEmail,
+  companyName: enteredCompanyName || null,
+  address: enteredAddress,
+  unit: enteredUnit || null,
+  city: enteredCity,
+  postalOrZip: enteredPostalOrZip,
+  provinceOrState: enteredProvinceOrState,
+  country: enteredCountry,
+  subtotal: cartSubtotal,
+  total: cartTotal,
+  orderDate: timestamp,
+  deliveryDate: new Date(deliveryDate).toDateString(),
+  uid,
+  items: cart
+}
+console.log(order);
+
+// const docRef = await db.collection('cart').doc()
+// console.log(docRef.id);
+// const id = docRef.id
+
+
+
+const savedOrder = await db.collection("orders").add(order)
+  .then(async docRef => {
+    console.log("Document written with ID: ", docRef.id);
+    console.log("Document written with : ", docRef);
+    console.log("Document written with ID: ", );
+    docRef.set({...order, orderId: docRef.id})
+    return (await docRef.get()).data();
+    // console.log("You can now also access this. as expected: ", this.foo)
+  })
+
+  console.log(savedOrder);
+  // console.log(docRef);
+// console.log(docRef);
+// console.log(docRef.id);
+
+
+
+    dispatch(cartActions.resetCart())
 
     
+
+    navigate('/order-confirmation', { state: {order: savedOrder}  });
+
+
 
   }
 

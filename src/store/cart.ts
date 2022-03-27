@@ -78,6 +78,10 @@ const cartSlice = createSlice({
       console.log('payload', action.payload)
       state.cart = action.payload.cart
       state.quantity = action.payload.quantity
+    },
+    resetCart(state) {
+      state.cart = []
+      state.quantity = 0
     }
   },
 });

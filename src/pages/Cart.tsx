@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 import { useEffect } from "react";
 import ErrorModal from "../components/ui/Modals/ErrorModals/ErrorModal";
+import firebase from "firebase/compat/app";
 import classes from './Cart.module.css'
 import useInputValidate from "../components/hooks/useInput";
+import { db } from "../firebase";
 
 type State = {
   cart: {
@@ -44,6 +46,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart);
   const isLogged = useSelector((state: State) => state.auth.isLogged);
+  const uid = useSelector((state: State) => state.auth.uid);
 
   const {
     value: enteredEmail,
@@ -161,20 +164,8 @@ const Cart = () => {
     inputBlurHandler: countryBlurHandler,
     submitHandler: countrySubmitHandler,
   } = useInputValidate((value) => {
-    return value.trim() !== "" && value.includes("@") && value.includes(".");
+    return value.trim() !== "";
   });
-
-  // const {
-  //   value: enteredPhone,
-  //   hasError: phoneInputHasError,
-  //   isValid: enteredPhoneIsValid,
-  //   reset: resetPhoneInput,
-  //   valueChangeHandler: phoneChangeHandler,
-  //   inputBlurHandler: phoneBlurHandler,
-  //   submitHandler: phoneSubmitHandler,
-  // } = useInputValidate((value) => {
-  //   return value.trim() !== "" && value.includes("@") && value.includes(".");
-  // });
 
 
 
@@ -191,6 +182,61 @@ const Cart = () => {
   const errorHandler = (): void => {
     setError(null);
   };
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+
+    //Do validation using custom hook
+
+
+    emailSubmitHandler()
+    firstNameSubmitHandler()
+    lastNameSubmitHandler()
+    companyNameSubmitHandler()
+    postalOrZipSubmitHandler()
+    citySubmitHandler()
+    provinceOrStateSubmitHandler()
+    countrySubmitHandler()
+    addressSubmitHandler()
+
+     //If a field is invalid, cancel submission
+     if (!enteredEmailIsValid || !enteredFirstNameIsValid || !enteredLastNameIsValid || !enteredCompanyNameIsValid || !enteredPostalOrZipIsValid || !enteredCityIsValid || !enteredCountryIsValid || !enteredProvinceOrStateIsValid || !enteredAddressIsValid) {
+      return;
+    }
+
+    //If valid, continue
+
+
+
+let timestamp = new Date();
+let deliveryDateSeconds = (new Date().getTime() + 1209600000);
+let deliveryDate = new Date(deliveryDateSeconds).toString()
+console.log(timestamp);
+console.log(deliveryDate);
+console.log(cart);
+
+//Get delivery date to readable or mutatable 2 week format. I want to be able to render date in an apealing way
+
+    // db.collection("orders").add({
+    //   firstName: enteredFirstName,
+    //   lastName: enteredFirstName,
+    //   companyName: enteredCompanyName || null,
+    //   address: enteredAddress,
+    //   unit: enteredUnit || null,
+    //   city: enteredCity,
+    //   postalOrZip: enteredPostalOrZip,
+    //   provinceOrState: enteredProvinceOrState,
+    //   country: enteredCountry,
+    //   timestamp,
+    //   deliveryDate: new Date(deliveryDate).toString()
+    //   uid,
+    //   order: cart
+    // });
+
+    
+
+  }
 
   useEffect(() => {
     const tax = () => {
@@ -211,6 +257,47 @@ const Cart = () => {
     setCartTax(Number(tax()));
     setCartTotal(Number((+subtotal() + +tax()).toFixed(2)));
   }, [cart]);
+
+  const firstNameInputClasses = !firstNameInputHasError
+    ? classes.control
+    : `${classes.control} ${classes.invalid}`;
+    
+    const lastNameInputClasses = !lastNameInputHasError
+    ? classes.control
+    : `${classes.control} ${classes.invalid}`;
+
+  const emailInputClasses = !emailInputHasError
+    ? classes.control
+    : `${classes.control} ${classes.invalid}`;
+
+  // const companyNameInputClasses = !companyNameInputHasError
+  //   ? classes.control
+  //   : `${classes.control} ${classes.invalid}`;
+
+  const addressInputClasses = !addressInputHasError
+    ? classes.control
+    : `${classes.control} ${classes.invalid}`;
+
+  // const unitInputClasses = !unitInputHasError
+  // ? classes.control
+  // : `${classes.control} ${classes.invalid}`;
+
+  const cityInputClasses = !cityInputHasError
+  ? classes.control
+  : `${classes.control} ${classes.invalid}`;
+
+  const provinceOrStateInputClasses = !provinceOrStateInputHasError
+  ? classes.control
+  : `${classes.control} ${classes.invalid}`;
+
+  const postalOrZipInputClasses = !postalOrZipInputHasError
+  ? classes.control
+  : `${classes.control} ${classes.invalid}`;
+
+  const countryInputClasses = !countryInputHasError
+  ? classes.control
+  : `${classes.control} ${classes.invalid}`;
+
 
   return (
     <>
@@ -304,12 +391,12 @@ const Cart = () => {
               </div>
               {cart.length > 0 && (
                 <div className={classes.checkout}>
-                  {(isLogged && checkoutInitiated) && <form className={classes.checkoutForm}>
+                  {(isLogged && checkoutInitiated) && <form className={classes.checkoutForm} onSubmit={submitHandler}>
                     <h3>Contact Information</h3>
 
 
                     <div className={classes.formRow}>
-                      <div className={classes.emailInputClasses}>
+                      <div className={emailInputClasses}>
                           <input
                             type="email"
                             id="email"
@@ -330,7 +417,7 @@ const Cart = () => {
                     <div className={classes.formRow}>
 
 
-                      <div className={classes.firstNameInputClasses}>
+                      <div className={firstNameInputClasses}>
                         <input
                           type="text"
                           id="first-name"
@@ -346,7 +433,7 @@ const Cart = () => {
                           <p className={classes.errorText}>Please enter a first name</p>
                         )}
                       </div>
-                      <div className={classes.lastNameInputClasses}>
+                      <div className={lastNameInputClasses}>
                         <input
                           type="text"
                           id="last-name"
@@ -371,12 +458,12 @@ const Cart = () => {
                     <h3 className={classes.shipping}>Shipping Information</h3>
 
                     <div className={classes.formRow}>
-                      <div className={classes.companyInputClasses}>
+                      <div>
                             <input
                               type="text"
                               id="company-name"
                               name="company-name"
-                              placeholder="Enter company name"
+                              placeholder="Enter company name (optional)"
                               onChange={companyNameChangeHandler}
                               onBlur={() => {
                                 companyNameBlurHandler()
@@ -389,101 +476,11 @@ const Cart = () => {
                           </div>
                     </div>
 
-                    <div className={classes.formRow}>
-                    <div className={classes.addressInputClasses}>
-                            <input
-                              type="text"
-                              id="address"
-                              name="address"
-                              placeholder="Enter address"
-                              onChange={addressChangeHandler}
-                              onBlur={() => {
-                                addressBlurHandler()
-                              }}
-                              value={enteredAddress}
-                            />
-                            {addressInputHasError && (
-                              <p className={classes.errorText}>Please enter a valid address</p>
-                            )}
-                          </div>
-
-                          <div className={classes.unitInputClasses}>
-                            <input
-                              type="text"
-                              id="unit"
-                              name="unit"
-                              placeholder="Enter unit (optional)"
-                              onChange={unitChangeHandler}
-                              onBlur={() => {
-                                unitBlurHandler()
-                              }}
-                              value={enteredUnit}
-                            />
-                            {/* {unitInputHasError && (
-                              <p className={classes.errorText}>Please enter a first and last name (1 space between)</p>
-                            )} */}
-                          </div>
-                    </div>
-
-                    <div className={classes.formRow}>
-                      
-
-                    <div className={classes.cityInputClasses}>
-                              <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                placeholder="City"
-                                onChange={cityChangeHandler}
-                                onBlur={() => {
-                                  cityBlurHandler()
-                                }}
-                                value={enteredCity}
-                              />
-                              {cityInputHasError && (
-                                <p className={classes.errorText}>Please enter a valid city</p>
-                              )}
-                            </div>
-                       <div className={classes.provinceOrStateInputClasses}>
-                            <input
-                              type="text"
-                              id="province-state"
-                              name="province-state"
-                              placeholder="Province/state"
-                              onChange={provinceOrStateChangeHandler}
-                              onBlur={() => {
-                                provinceOrStateBlurHandler()
-                              }}
-                              value={enteredProvinceOrState}
-                            />
-                            {provinceOrStateInputHasError && (
-                              <p className={classes.errorText}>Please enter a province/state</p>
-                            )}
-                          </div>
-
-
-                          <div className={classes.postalOrZipInputClasses}>
-                            <input
-                              type="text"
-                              id="postal-zip"
-                              name="postal-zip"
-                              placeholder="Postal/ZIP"
-                              onChange={postalOrZipChangeHandler}
-                              onBlur={() => {
-                                postalOrZipBlurHandler()
-                              }}
-                              value={enteredPostalOrZip}
-                            />
-                            {postalOrZipInputHasError && (
-                              <p className={classes.errorText}>Please enter a valid Postal/ZIP Code</p>
-                            )}
-                          </div>
-                    </div>
 
                     <div className={classes.formRow}>
 
-                    <div>
-                        <select id="country" name="country" className="form-control" onBlur={countryBlurHandler} onChange={countryChangeHandler} value={enteredCountry}>
+                    <div className={countryInputClasses}>
+                        <select id="country" name="country" onBlur={countryBlurHandler} onChange={countryChangeHandler} value={enteredCountry}>
                             <option value="" disabled>Country</option>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Åland Islands">Åland Islands</option>
@@ -734,6 +731,98 @@ const Cart = () => {
                     
                     </div>
 
+
+                    <div className={classes.formRow}>
+                    <div className={addressInputClasses}>
+                            <input
+                              type="text"
+                              id="address"
+                              name="address"
+                              placeholder="Enter address"
+                              onChange={addressChangeHandler}
+                              onBlur={() => {
+                                addressBlurHandler()
+                              }}
+                              value={enteredAddress}
+                            />
+                            {addressInputHasError && (
+                              <p className={classes.errorText}>Please enter a valid address</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <input
+                              type="text"
+                              id="unit"
+                              name="unit"
+                              placeholder="Enter unit (optional)"
+                              onChange={unitChangeHandler}
+                              onBlur={() => {
+                                unitBlurHandler()
+                              }}
+                              value={enteredUnit}
+                            />
+                            {/* {unitInputHasError && (
+                              <p className={classes.errorText}>Please enter a first and last name (1 space between)</p>
+                            )} */}
+                          </div>
+                    </div>
+
+                    <div className={classes.formRow}>
+                      
+
+                    <div className={cityInputClasses}>
+                              <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="City"
+                                onChange={cityChangeHandler}
+                                onBlur={() => {
+                                  cityBlurHandler()
+                                }}
+                                value={enteredCity}
+                              />
+                              {cityInputHasError && (
+                                <p className={classes.errorText}>Please enter a valid city</p>
+                              )}
+                            </div>
+                       <div className={provinceOrStateInputClasses}>
+                            <input
+                              type="text"
+                              id="province-state"
+                              name="province-state"
+                              placeholder="Province/state"
+                              onChange={provinceOrStateChangeHandler}
+                              onBlur={() => {
+                                provinceOrStateBlurHandler()
+                              }}
+                              value={enteredProvinceOrState}
+                            />
+                            {provinceOrStateInputHasError && (
+                              <p className={classes.errorText}>Please enter a province/state</p>
+                            )}
+                          </div>
+
+
+                          <div className={postalOrZipInputClasses}>
+                            <input
+                              type="text"
+                              id="postal-zip"
+                              name="postal-zip"
+                              placeholder="Postal/ZIP"
+                              onChange={postalOrZipChangeHandler}
+                              onBlur={() => {
+                                postalOrZipBlurHandler()
+                              }}
+                              value={enteredPostalOrZip}
+                            />
+                            {postalOrZipInputHasError && (
+                              <p className={classes.errorText}>Please enter a valid Postal/ZIP Code</p>
+                            )}
+                          </div>
+                    </div>
+
                     {/* <div className={classes.formRow}>
                       <div className={classes.phoneInputClasses}>
                                 <input
@@ -753,7 +842,7 @@ const Cart = () => {
                               </div>
                     </div> */}
                     <div className={classes.checkoutButtonWrapper}>
-                      <button>Checkout</button>
+                      <button>Confirm Checkout</button>
 
                     </div>
                   </form>}

@@ -72,3 +72,30 @@
 .shipping {
   margin-top: 40px;
 }
+
+.invalid input,
+.invalid select
+ {
+  /* border-color: #aa0b20; */
+  border: 2px solid #aa0b20 !important;
+  background-color: #ffeff1;
+}
+
+.invalid input:focus,
+.invalid select:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.errorText {
+  color: #b40e0e;
+  width: 90%;
+}
+
+.formError {
+  color: #b40e0e;
+  width: 90%;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: bold;
+}

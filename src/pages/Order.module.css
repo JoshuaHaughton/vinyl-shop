@@ -1,0 +1,163 @@
+.orderCard {
+  margin: 120px 0;
+  /* padding: 0 24px; */
+  border: 1px solid #d5d9d9;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.cardHead {
+  background-color: #eff2f2;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 40px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.headerInfo > div {
+  margin-right: 16px;
+}
+
+.headerSection {
+  height: 100%;
+}
+
+.order {
+  padding: 24px 64px;
+  display: flex;
+}
+
+.order > div {
+  width: 50%;
+}
+
+.deliveryDate {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.orderBodyRight {
+  padding: 12px;
+  /* background-color: white; */
+}
+
+.detailCard {
+  background-color: #eff2f2;
+  border-radius: 8px;
+  padding: 32px 0;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 300ms ease;
+  /* width: 100%;
+  height: 100%; */
+}
+
+.detailCard:hover {
+  box-shadow: 0 2px 9px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.detailCard > h3 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.detailCard > hr {
+  /* color: #0652b4; */
+  border-color: #0652b4;
+  margin: 8px 64px 12px 64px;
+}
+
+.detailCardRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+}
+
+.detailCardRow > p {
+  margin: 0 8px;
+}
+
+.detailCardRow > p:nth-child(2) {
+  text-align: right;
+}
+
+.orderPrice {
+  font-weight: bold;
+}
+
+@media(max-width: 1200px) {
+  .order {
+    flex-direction: column;
+  }
+
+  .order > div {
+    width: 100%;
+  }
+
+  .orderBodyRight {
+    padding: 0;
+    margin: 32px 0 16px 0;
+  }
+}
+
+@media(max-width: 730px) {
+  .order {
+    padding: 24px 32px;
+  }
+}
+
+@media(max-width: 635px) {
+  .order {
+    padding: 24px 16px;
+  }
+
+  .detailCardRow {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .detailCardRow > p:nth-child(1) {
+    font-weight: bold;
+  }
+
+  .detailCardRow > p {
+    font-size: 18px;
+    text-align: center !important;
+  }
+
+}
+
+@media(max-width: 550px) {
+  .cardHead {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerInfo {
+    width: auto;
+  }
+
+  .headerInfo > div:nth-child(1) {
+    margin-bottom: 12px;
+    margin-right: 0 !important;
+  }
+}
+
+@media(max-width: 320px) {
+  .detailCardRow > p {
+    font-size: 14px;
+    text-align: center !important;
+  }
+}

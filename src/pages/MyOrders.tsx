@@ -94,6 +94,7 @@ const MyOrders = () => {
 
   return (
     <div className={classes.container}>
+      <h1>Your Orders</h1>
       <div className={classes.ordersContainer}>
         {myOrders.length > 0 && myOrders.map((order: OrderType )=> {
           return <Order key={order?.orderId} order={order} />

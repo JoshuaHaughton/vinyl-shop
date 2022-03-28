@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Price from "../components/ui/Price";
 import Rating from "../components/ui/Rating";
 import Vinyl from "../components/ui/Vinyl";
@@ -100,6 +100,7 @@ const VinylInfo = (): JSX.Element => {
 
   const vinyls: VinylInterface[] = useSelector((state: State) => state.vinyls.vinyls);
   const uid = useSelector((state: State) => state.auth.uid);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart)
@@ -148,6 +149,10 @@ const VinylInfo = (): JSX.Element => {
     }
   }
 
+  const goBack = () => {
+    navigate(-1)
+  }
+
 
   const mountedRef = useRef(true);
 
@@ -179,12 +184,12 @@ const VinylInfo = (): JSX.Element => {
         <div className="vinyls__container">
           <div className="row">
             <div className="vinyl__selected--top">
-              <Link to="/vinyls" className="vinyl__link">
+              <div onClick={goBack} className="vinyl__link">
                 <FontAwesomeIcon icon="arrow-left" />
-              </Link>
-              <Link to="/vinyls" className="vinyl__link">
+              </div>
+              <div onClick={goBack} className="vinyl__link">
                 <h2 className="vinyl__selected--title--top">Vinyls</h2>
-              </Link>
+              </div>
             </div>
             <div className="vinyl__selected">
               <figure className="vinyl__selected--figure">

@@ -25,6 +25,7 @@
 
 .itemDescription > button {
   background-color: #0652b4;
+  border: 1px solid #0652b4;
   color: white;
   padding: 8px 8px;
   font-size: 14px;
@@ -40,6 +41,10 @@
 
 .itemDescription > button:hover {
   transform: scale(1.025);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background-color: #fff;
+  color: #0652b4;
+  border-color: #d5d9d9;
 }
 
 @media(max-width: 400px) {

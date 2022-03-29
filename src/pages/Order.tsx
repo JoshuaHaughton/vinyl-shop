@@ -73,9 +73,18 @@ const Order = ({ order }: OrderType) => {
         </div>
        
         
-        <div className={classes.headerSection}>
-          <h6>ORDER #:</h6>
-          <p>{order.orderId}</p>
+        <div className={classes.headerRight}>
+
+          <div className={`${classes.headerSection} ${classes.cancelOrder}`}>
+            {/* <h6>Cancel Order</h6> */}
+            <button>Cancel Order</button>
+          </div>
+
+          <div className={classes.headerSection}>
+            <h6>ORDER #:</h6>
+            <p>{order.orderId}</p>
+          </div>
+
         </div>
         
 

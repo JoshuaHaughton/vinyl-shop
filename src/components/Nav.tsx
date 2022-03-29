@@ -191,6 +191,19 @@ const Nav = () => {
               Vinyls
             </Link>
           </li>
+
+
+          {isLogged && <li className="nav__list">
+            <Link
+              to="/orders"
+              className="nav__link link__hover-effect
+              link__hover-effect--black"
+            >
+              My Orders
+            </Link>
+          </li>}
+
+
          {!isLogged &&  <li className="nav__list">
             <button
               className="nav__link link__hover-effect

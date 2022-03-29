@@ -83,9 +83,11 @@ const MyOrders = () => {
       ),
     );
   }
-  fetchOrders()
+  if (myOrders.length === 0) {
+    fetchOrders()
+  }
 
-  }, [])
+  }, [uid])
 
   useEffect(() => {
     console.log(myOrders);
@@ -96,8 +98,13 @@ const MyOrders = () => {
     <div className={classes.container}>
       <h1>Your Orders</h1>
       <div className={classes.ordersContainer}>
-        {myOrders.length > 0 && myOrders.map((order: OrderType )=> {
-          return <Order key={order?.orderId} order={order} />
+        {myOrders[0] && myOrders.map((order: OrderType ) => {
+          console.log(order);
+          if (!order.orderId) {
+            console.log(order);
+            return
+          }
+          return <Order key={order.orderId} order={order} />
         })}
         {/* {} */}
       </div>

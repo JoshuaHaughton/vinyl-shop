@@ -78,6 +78,26 @@
   font-size: 26px;
 }
 
+.exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: 12px 20px 0 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.exitIcon {
+  color: #fff;
+  transition: all 300ms ease;
+}
+
+.exitIcon:hover {
+  color: #ba181b;
+  transform: scale(1.1);
+}
+
 @keyframes loading {
   0% {
     transform: rotate(0);

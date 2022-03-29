@@ -1,4 +1,4 @@
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -38,11 +38,14 @@ const ModalOverlay = (props: Props): JSX.Element => {
     }
   }
   
-  
+
   return (
     <div className={`${classes.modal} ${classes.card}`}>
       <header className={classes.header}>
         <h2>{props.title}</h2>
+        <div className={classes.exit} onClick={props.onClose}>
+          <FontAwesomeIcon icon={faTimes} className={classes.exitIcon} />
+        </div>
       </header>
       <div className={classes.content}>
         <p>{props.message}</p>

@@ -1,4 +1,7 @@
-import React from 'react'
+import { collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs } from 'firebase/firestore';
+import React, { useState } from 'react'
+import Modal from '../components/ui/Modals/GeneralModalsModals/Modal';
+import { db } from '../firebase';
 import MyOrders from './MyOrders';
 import classes from './Order.module.css'
 import OrderItem from './OrderItem';
@@ -48,8 +51,33 @@ type ItemType = {
   };
 
 const Order = ({ order }: OrderType) => {
-  console.log('Order: ', order);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const cancelOrder = async () => {
+    const docRef = (doc(db, "orders", order.orderId))
+    let deletedOrder = (await getDocFromCache(docRef)).data()
+    console.log('DELETED', deletedOrder);
+    try {
+      
+      await deleteDoc(doc(db, "orders", order.orderId));
+    } catch (err) {
+      console.log(err);
+
+    }
+  }
+
+  const openModal = () => {
+    setOpenDeleteModal(true)
+  }
+
+  const closeModal = () => {
+    setOpenDeleteModal(false)
+  }
+
   return (
+    <>
+    
+    
+    {openDeleteModal && <Modal title={'Cancel this order?'} message={'You will not be able to recover the deleted information'} onClose={() => setOpenDeleteModal(false)} onConfirm={cancelOrder} />}
     <div className={classes.orderCard}>
       <div className={classes.cardHead}>
 
@@ -77,11 +105,11 @@ const Order = ({ order }: OrderType) => {
 
           <div className={`${classes.headerSection} ${classes.cancelOrder}`}>
             {/* <h6>Cancel Order</h6> */}
-            <button>Cancel Order</button>
+            <button onClick={openModal}>Cancel Order</button>
           </div>
 
           <div className={classes.headerSection}>
-            <h6>ORDER #:</h6>
+            <h6>ORDER ID:</h6>
             <p>{order.orderId}</p>
           </div>
 
@@ -165,6 +193,7 @@ const Order = ({ order }: OrderType) => {
 
       </div>
     </div>
+    </>
   )
 }
 

@@ -15,7 +15,7 @@ import EmptyCart from "../assets/EmptyCart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 import { useEffect } from "react";
-import ErrorModal from "../components/ui/Modals/ErrorModals/ErrorModal";
+import ErrorModal from "../components/ui/Modals/GeneralModalsModals/Modal";
 import firebase from "firebase/compat/app";
 import useInputValidate from "../components/hooks/useInput";
 import { db } from "../firebase";

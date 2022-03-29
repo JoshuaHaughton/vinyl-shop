@@ -4,7 +4,7 @@ import EmptyCart from "../assets/EmptyCart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cart";
 import { useEffect } from "react";
-import ErrorModal from "../components/ui/Modals/ErrorModals/ErrorModal";
+import ErrorModal from "../components/ui/Modals/GeneralModalsModals/Modal";
 import firebase from "firebase/compat/app";
 import classes from './Cart.module.css'
 import useInputValidate from "../components/hooks/useInput";
@@ -343,13 +343,13 @@ const savedOrder = await db.collection("orders").add(order)
 
   return (
     <>
-      {error && (
+      {/* {error && (
         <ErrorModal
           title={error.title}
           message={error.message}
-          onConfirm={errorHandler}
+          onClose={errorHandler}
         />
-      )}
+      )} */}
       <div id="vinyls_body">
         <main id="vinyls__main">
           <div className="vinyls__container">

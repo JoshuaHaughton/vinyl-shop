@@ -83,9 +83,8 @@ const MyOrders = () => {
       ),
     );
   }
-  if (myOrders.length === 0) {
     fetchOrders()
-  }
+
 
   }, [uid])
 

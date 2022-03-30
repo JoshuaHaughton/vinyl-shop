@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
 import Price from "./Price";
+import skeleton from '../../assets/skeleton.png'
 
 interface Props {
   vinylInfo: {
@@ -37,10 +38,10 @@ const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
       };
 
     }
-    // return () => {
-    //   //when the component unmounts
-    //   mountedRef.current = false;
-    // };
+    return () => {
+      //when the component unmounts
+      mountedRef.current = false;
+    };
   }, [vinylInfo]);
 
   return (
@@ -65,7 +66,13 @@ const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
         </>
       ) : (
         <>
-          <div className="vinyl__img--skeleton"></div>
+          <div>
+          <Link to={`#`}>
+            <figure className="vinyl__img--skeleton-wrapper">
+              <img src={skeleton} alt="" className="vinyl__image--skeleton" />
+            </figure>
+          </Link>
+          </div>
           <div className="skeleton vinyl__title--skeleton"></div>
           <div className="skeleton vinyl__rating--skeleton"></div>
           <div className="skeleton vinyl__price--skeleton"></div>

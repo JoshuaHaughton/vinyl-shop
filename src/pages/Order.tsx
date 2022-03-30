@@ -2,6 +2,7 @@ import { collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs } from 'fi
 import React, { useState } from 'react'
 import Modal from '../components/ui/Modals/GeneralModalsModals/Modal';
 import { db } from '../firebase';
+import { cartActions } from '../store/cart';
 import MyOrders from './MyOrders';
 import classes from './Order.module.css'
 import OrderItem from './OrderItem';
@@ -36,6 +37,7 @@ type OrderType = {
       genres: string[]
     }[];
   }
+  deleteOrder: React.Dispatch<React.SetStateAction<any>>
 }
 
 type ItemType = {
@@ -50,12 +52,13 @@ type ItemType = {
     genres: string[];
   };
 
-const Order = ({ order }: OrderType) => {
+const Order = ({ order, deleteOrder }: OrderType) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const cancelOrder = async () => {
     const docRef = (doc(db, "orders", order.orderId))
-    let deletedOrder = (await getDocFromCache(docRef)).data()
-    console.log('DELETED', deletedOrder);
+    console.log(docRef.id);
+    let deletedOrder = (await getDoc(docRef)).data()
+    console.log('ATTEMPTING DELETE', deletedOrder);
     try {
       
       await deleteDoc(doc(db, "orders", order.orderId));
@@ -77,7 +80,7 @@ const Order = ({ order }: OrderType) => {
     <>
     
     
-    {openDeleteModal && <Modal title={'Cancel this order?'} message={'You will not be able to recover the deleted information'} onClose={() => setOpenDeleteModal(false)} onConfirm={cancelOrder} />}
+    {openDeleteModal && <Modal title={'Cancel this order?'} message={'You will not be able to recover the deleted information from your order.'} onClose={() => setOpenDeleteModal(false)} onConfirm={cancelOrder} order={order} deleteLocalOrder={deleteOrder} />}
     <div className={classes.orderCard}>
       <div className={classes.cardHead}>
 
@@ -125,7 +128,7 @@ const Order = ({ order }: OrderType) => {
           <h3 className={classes.deliveryDate}>Delivery Date: {order.deliveryDate}</h3>
           <div className={classes.orderBody}>
             {order.items.map((item: ItemType) => {
-              return <OrderItem item={item} />
+              return <OrderItem key={item.id} item={item} />
             })}
           </div>
         </div>

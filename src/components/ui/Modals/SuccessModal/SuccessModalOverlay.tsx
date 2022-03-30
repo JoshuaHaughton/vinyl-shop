@@ -23,9 +23,9 @@ const SuccessModalOverlay = (props: Props) => {
           <br />   
         <p>Have a great day!</p>
       </div>
-      <footer className={classes.actions}>
+      <div className={classes.actions}>
         <button className={classes.button} onClick={props.closeModal}>Okay</button>
-      </footer>
+      </div>
     </div>
   )
 }

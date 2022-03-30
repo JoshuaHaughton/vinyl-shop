@@ -9,6 +9,97 @@ interface Props {
   message: string;
   onClose: () => void;
   onConfirm?: () => void;
+  deleteLocalOrder: React.Dispatch<React.SetStateAction<any>>
+  order: {
+    firstName: string;
+    lastName: string;
+    companyName: string | null;
+    address: string;
+    unit: string | null;
+    city: string;
+    email: string;
+    postalOrZip: string;
+    provinceOrState: string;
+    country: string;
+    subtotal: number;
+    total: number;
+    orderDate: string
+    deliveryDate: string;
+    uid: string;
+    orderId: string;
+    items: {
+      id: number;
+      title: string;
+      artist: string;
+      url: string;
+      originalPrice: number;
+      salePrice: number;
+      rating: number;
+      quantity: number;
+      genres: string[]
+    }[];
+}
+
+}
+
+type OrderArrayType = {
+  firstName: string;
+  lastName: string;
+  companyName: string | null;
+  address: string;
+  unit: string | null;
+  city: string;
+  email: string;
+  postalOrZip: string;
+  provinceOrState: string;
+  country: string;
+  subtotal: number;
+  total: number;
+  orderDate: string
+  deliveryDate: string;
+  uid: string;
+  orderId: string;
+  items: {
+    id: number;
+    title: string;
+    artist: string;
+    url: string;
+    originalPrice: number;
+    salePrice: number;
+    rating: number;
+    quantity: number;
+    genres: string[]
+  }[];
+}
+
+type OrderType = {
+  firstName: string;
+  lastName: string;
+  companyName: string | null;
+  address: string;
+  unit: string | null;
+  city: string;
+  email: string;
+  postalOrZip: string;
+  provinceOrState: string;
+  country: string;
+  subtotal: number;
+  total: number;
+  orderDate: string
+  deliveryDate: string;
+  uid: string;
+  orderId: string;
+  items: {
+    id: number;
+    title: string;
+    artist: string;
+    url: string;
+    originalPrice: number;
+    salePrice: number;
+    rating: number;
+    quantity: number;
+    genres: string[]
+  };
 }
 
 interface BackdropProps {
@@ -29,11 +120,25 @@ const ModalOverlay = (props: Props): JSX.Element => {
 
       onConfirm()
 
+      props.deleteLocalOrder((prev: OrderArrayType)  => {
+
+        let originalOrders = JSON.parse(JSON.stringify(prev))
+
+        let updatedOrders = originalOrders.filter((a: OrderType)  => {
+          return a.orderId !== props.order.orderId
+        })
+
+        return updatedOrders;
+
+
+      })
+
       onClose()
 
       setLoading(false)
 
     } catch(err) {
+      setLoading(false)
       console.log(err);
     }
   }
@@ -48,11 +153,11 @@ const ModalOverlay = (props: Props): JSX.Element => {
         </div>
       </header>
       <div className={classes.content}>
-        <p>{props.message}</p>
+        <p> <span className={classes.red}>Warning:</span> {props.message}</p>
         {/* <p>Have a great day!</p> */}
       </div>
       <footer className={classes.actions}>
-        {props.onConfirm && <button className={classes.button} onClick={() => handleConfirm(props.onConfirm!, props.onClose)}>{loading ? (
+        {props.onConfirm && <button className={`${classes.button} ${classes.cancelButton}`} onClick={() => handleConfirm(props.onConfirm!, props.onClose)}>{loading ? (
             <FontAwesomeIcon icon={faSpinner} className={classes.spinner} />
           ) : (
             "Confirm"
@@ -76,6 +181,8 @@ const Modal = (props: Props): JSX.Element => {
           message={props.message}
           onClose={props.onClose}
           onConfirm={props.onConfirm}
+          order={props.order}
+          deleteLocalOrder={props.deleteLocalOrder}
         />, document.getElementById('overlay-root')!
       )}
     </>

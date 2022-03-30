@@ -141,7 +141,9 @@ function App() {
     <Router>
       <ScrollToTop>
         <div className="App">
-          <Nav />
+          <nav>
+            <Nav /> 
+          </nav>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/vinyls" element={<Vinyls />} />

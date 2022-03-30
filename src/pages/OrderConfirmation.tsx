@@ -110,6 +110,7 @@ const OrderConfirmation = () => {
     //   message: `Sorry, this feature hasn't been implemented yet :(`,
     // });
     // setCheckoutInitiated(prev => !prev)
+    navigate('/orders');
   };
 
   const errorHandler = (): void => {

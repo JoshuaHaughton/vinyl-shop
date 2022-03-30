@@ -60,15 +60,28 @@ const cartSlice = createSlice({
       }
     },
     changeQuantity(state, action) {
+
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id,
       );
+
+      
+
+
       const originalItemQuantity = state.cart[itemIndex].quantity;
       const newTotalCartQuantity =
         state.quantity - originalItemQuantity + +action.payload.newQuantity;
 
-      state.cart[itemIndex].quantity = +action.payload.newQuantity;
-      state.quantity = newTotalCartQuantity;
+      if (newTotalCartQuantity === 0) {
+        state.quantity -= originalItemQuantity
+        state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+        return;
+      } else {
+        state.cart[itemIndex].quantity = +action.payload.newQuantity;
+        state.quantity = newTotalCartQuantity;
+
+      }
+
     },
     removeVinyl(state, action) {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);

@@ -5,11 +5,12 @@
 
 .checkoutForm {
   width: 40%;
-  margin-bottom: 24px;
+  margin: 40px 0 24px 0;
 }
 
 .checkoutForm > h3 {
-  text-align: center;
+  /* text-align: center; */
+  padding: 0 12px;
 }
 
 .formRow {
@@ -98,4 +99,34 @@
   text-align: center;
   padding: 12px 0;
   font-weight: bold;
+}
+
+@media(max-width: 815px) {
+  .checkout {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .checkoutForm {
+    width: 70%;
+    margin-top: 80px;
+  }
+
+  .total {
+    margin-left: 0;
+    max-width: 444px;
+  }
+
+  .checkoutForm > h3 {
+    text-align: center;
+  }
+}
+
+@media(max-width: 600px) {
+
+  .checkoutForm {
+    width: 100%;
+  }
 }

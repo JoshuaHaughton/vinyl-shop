@@ -9,7 +9,9 @@ import firebase from "firebase/compat/app";
 import classes from './Cart.module.css'
 import useInputValidate from "../components/hooks/useInput";
 import { db } from "../firebase";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+// console.log(new Date(new Date()).getTime());
 type State = {
   cart: {
     cart: {
@@ -43,6 +45,7 @@ const Cart = () => {
   const [cartTax, setCartTax] = useState<number>(0);
   const [cartTotal, setCartTotal] = useState(0);
   const [checkoutInitiated, setCheckoutInitiated] = useState(false)
+  const [processingPayment, setProcessingPayment] = useState(false)
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart);
   const isLogged = useSelector((state: State) => state.auth.isLogged);
@@ -222,7 +225,6 @@ let deliveryDateSeconds = (new Date().getTime() + 1209600000);
 let deliveryDate = new Date(deliveryDateSeconds).toDateString()
 console.log(timestamp);
 console.log(deliveryDate);
-console.log(cart);
 
 
 //Get delivery date to readable or mutatable 2 week format. I want to be able to render date in an apealing way
@@ -240,6 +242,7 @@ let order = {
   country: enteredCountry,
   subtotal: cartSubtotal,
   total: cartTotal,
+  timestamp: new Date(new Date()).getTime(),
   orderDate: timestamp,
   deliveryDate: new Date(deliveryDate).toDateString(),
   uid,
@@ -396,7 +399,7 @@ const savedOrder = await db.collection("orders").add(order)
                         <div className="cart__quantity">
                           <input
                             type="number"
-                            min={0}
+                            min={1}
                             max={99}
                             className="cart__input"
                             value={vinyl.quantity}
@@ -884,8 +887,8 @@ const savedOrder = await db.collection("orders").add(order)
                               </div>
                     </div> */}
                     <div className={classes.checkoutButtonWrapper}>
-                      <button>Confirm Checkout</button>
-
+                      <button>{processingPayment ? <FontAwesomeIcon icon={faSpinner} className={classes.spinner} /> : `Confirm Checkout`}</button>
+                      
                     </div>
                   </form>}
 

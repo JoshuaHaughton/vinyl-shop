@@ -67,7 +67,7 @@
 }
 
 .cancelOrder > button:hover {
-  transform: scale(1.025);
+  transform: scale(1.015);
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   color: black;
 }
@@ -185,10 +185,6 @@
 
   .headerRight {
     flex-direction: column-reverse;
-  }
-
-  .headerRight > button {
-    /* margin-top: 80px; */
   }
 
   .cancelOrder {

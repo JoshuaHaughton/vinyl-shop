@@ -339,7 +339,7 @@ header {
 }
 
 .vinyls__container {
-  padding: 24px 0;
+  padding: 40px 0;
 }
 
 .row {
@@ -661,7 +661,7 @@ VINYLS PAGE
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 24px;
+  /* margin-top: 24px; */
   /* padding: 0 24px; */
 }
 

@@ -159,6 +159,7 @@ const MyOrders = () => {
     <div className={classes.container}>
      {(isLogged && myOrders[0]) && <>
      <h1>Your Orders</h1>
+     <hr />
       <div className={classes.ordersContainer}>
         {myOrders[0] && myOrders.map((order: OrderArrayType ) => {
           console.log(order);

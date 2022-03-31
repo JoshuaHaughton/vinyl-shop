@@ -9,6 +9,17 @@
 .container > h1 {
   margin-top: 64px;
   font-size: 68px;
+  transition: all 400ms ease;
+  margin-bottom: 16px;
+}
+
+.container > h1:hover {
+  color: black;
+}
+
+.container > hr {
+  border: 1px solid #000;
+  width: 20%
 }
 
 .ordersContainer {

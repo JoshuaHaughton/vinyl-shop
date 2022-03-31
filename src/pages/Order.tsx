@@ -142,7 +142,7 @@ const Order = ({ order, deleteOrder }: OrderType) => {
       <div className={classes.order}>
 
         <div className={classes.orderBodyLeft}>
-          <h3 className={classes.deliveryDate}>Delivery Date: {order.deliveryDate}</h3>
+          <h3 className={classes.deliveryDate}>Delivery Date: {(Number(new Date(order.deliveryDate).getTime()) < new Date().getTime()) ? `Delivered!` : order.deliveryDate  }</h3>
           <div className={classes.orderBody}>
             {order.items.map((item: ItemType) => {
               return <OrderItem key={item.id} item={item} />

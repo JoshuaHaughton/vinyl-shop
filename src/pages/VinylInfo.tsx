@@ -203,6 +203,7 @@ const VinylInfo = (): JSX.Element => {
               </figure>
               <div className="vinyl__selected--description">
                 {thisVinyl ? <> <h2 id="vinyl__selected--title">{thisVinyl?.title}</h2>
+                <h3 className="vinyl__artist">Artist: {thisVinyl.artist}</h3>
                 <Rating rating={thisVinyl?.rating} />
                 <div className="vinyl__selected--price">
                   <Price

@@ -29,8 +29,9 @@ const OrderItem = ({ item }: ItemType) => {
       </figure>
       <div className={classes.itemDescription}>
         <h5>{item.title}</h5>
+        <h4>{item.artist}</h4>
         <p>${item.salePrice ? item.salePrice : item.originalPrice}</p>
-        <p>x{item.quantity}</p>
+        <p className={classes.quantity}>x{item.quantity}</p>
         <button onClick={clickHandler}>View Item Details</button>
       </div>
     </div>

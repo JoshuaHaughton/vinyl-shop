@@ -67,7 +67,7 @@ h1 {
 h2 {
   font-size: 32px;
   margin-bottom: 32px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 button {
@@ -141,6 +141,7 @@ button:active {
   width: 100%;
   height: 3px;
   background-color: #0652b4;
+  border-radius: 4px;
   transform: scaleX(0);
   transition: transform 400ms ease-in-out;
 }
@@ -318,10 +319,10 @@ header {
   align-items: center;
   z-index: 100;
 }
-
+/* 
 .header__description button {
   margin-top: 15px
-}
+} */
 
 .header__img--wrapper {
   padding: 40px 0 20px 0;
@@ -544,18 +545,22 @@ FEATURES
   border-radius: 4px;
   overflow: hidden;
   display: flex;
-  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.13);
+  box-shadow: -2px 4px 6px 1px rgba(0, 0, 0, 0.15);
   transition: all 300ms ease;
 }
 
 .vinyl__img--wrapper:hover {
   transform: scale(1.02);
   transform: translateY(-4px);
-  box-shadow: rgba(50, 50, 93, 0.4) 0px 4px 8px -5px, rgba(0, 0, 0, 0.3) 2px 6px 6px -2px;
+  box-shadow: -4px 4px 10px 1px rgba(0, 0, 0, 0.25);
 }
 
 .vinyl__title {
   font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.vinyl__artist {
   margin-bottom: 8px;
 }
 
@@ -792,7 +797,7 @@ select {
 }
 
 .vinyl__selected--title {
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   padding-bottom: 0;
 }
 
@@ -1084,6 +1089,6 @@ select {
   }
 
   #vinyl__selected--title {
-    margin-bottom: 8px;
+    margin-bottom: 0;
     padding-bottom: 0;
   }

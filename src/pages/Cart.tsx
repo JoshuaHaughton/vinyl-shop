@@ -391,15 +391,18 @@ setTimeout(() => {
                             className="cart__vinyl--img"
                           />
                           <div className="cart__vinyl--info">
-                            <span className="cart__vinyl--title">
+                            <p className="cart__vinyl--title">
                               {vinyl.title}
-                            </span>
-                            <span className="cart__vinyl--price">
+                            </p> 
+                            <p className="cart__vinyl--artist">
+                              {vinyl.artist}
+                            </p>
+                            <p className="cart__vinyl--price">
                               $
                               {(vinyl.salePrice || vinyl.originalPrice).toFixed(
                                 2,
                               )}
-                            </span>
+                            </p>
                             <button
                               className="cart__vinyl--remove"
                               onClick={() =>

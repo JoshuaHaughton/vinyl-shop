@@ -9,7 +9,7 @@ const Landing = () => {
         <div className="header__container">
           <div className="header__description">
             <h1>Canada's top rated online vinyl exchange!</h1>
-            <h2>Find your dream vinyl with <span className="blue">Vinyl Fresh</span></h2>
+            <h2>Find your dream vinyl with <span className="blue text__center ">Vinyl Fresh</span></h2>
             <Link to="/vinyls">
               <button className="btn landing__btn">Browse Vinyls</button>
             </Link>

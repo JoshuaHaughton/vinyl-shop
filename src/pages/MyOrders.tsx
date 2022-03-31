@@ -114,19 +114,7 @@ const MyOrders = () => {
       retrievedOrders.push(item.data())
     })
 
-    retrievedOrders = retrievedOrders.sort((a, b) => a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0)
-
-    // console.log(retrievedOrders.sort((a, b) => {
-    //   return 
-    // }));
-
-    // setMyOrders((prev: OrderArrayType) => {
-    //   let originalOrders = JSON.parse(JSON.stringify(prev))
-
-    //   originalOrders.filter((a: OrderType)  => {
-    //     return a.
-    //   })
-    // })
+    retrievedOrders = retrievedOrders.sort((a, b) => a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0)
 
     setMyOrders(retrievedOrders)
 

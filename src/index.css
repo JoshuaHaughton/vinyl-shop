@@ -67,7 +67,7 @@ h1 {
 h2 {
   font-size: 32px;
   margin-bottom: 32px;
-  /* text-align: center; */
+  text-align: center;
 }
 
 button {
@@ -893,17 +893,26 @@ select {
 .cart__vinyl--info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 8px 16px;
+  justify-content: space-between;
+  padding: 4px 16px 4px 16px;
+  /* max-height: 106px; */
 }
 
 .cart__vinyl--title {
-  font-size: 20px;
-  margin-bottom: 16px;
+  font-size: 19px;
+  line-height: 1;
+  font-weight: bold;
+  /* margin-bottom: 16px; */
+}
+
+.cart__vinyl--artist {
+  font-size: 16px;
+  /* margin-bottom: 16px; */
 }
 
 .cart__vinyl--price {
   margin-bottom: 16px;
+  font-size: 14px;
 }
 
 .cart__vinyl--remove {
@@ -1006,6 +1015,18 @@ select {
   .vinyl__selected--description {
     width: 100%;
   }
+
+  .cart__vinyl--title {
+    font-size: 16px;
+  }
+
+  .cart__vinyl--remove {
+    font-size: 12px !important;
+  }
+
+  .cart__vinyl--price {
+    margin-bottom: 0px;
+}
 }
 
 @media (max-width: 600px) {
@@ -1046,6 +1067,12 @@ select {
   } */
 }
 
+@media (max-width: 635px) {
+  .cart__vinyl--img {
+    display: none;
+  }
+}
+
 
 /* SMALL PHONES, LARGE SMARTPHONES */
 @media (max-width: 550px) {
@@ -1063,10 +1090,6 @@ select {
 
   .highlight:not(:last-child) {
     margin-bottom: 24px;
-  }
-
-  .cart__vinyl--img {
-    display: none;
   }
 
   .cart__vinyl--title {
@@ -1102,4 +1125,8 @@ select {
   #vinyl__selected--title {
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  .text__center {
+    text-align: center;
   }

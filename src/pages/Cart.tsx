@@ -46,6 +46,7 @@ const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [checkoutInitiated, setCheckoutInitiated] = useState(false)
   const [processingPayment, setProcessingPayment] = useState(false)
+  const [paymentReceived, setPaymentReceived] = useState(false)
   const dispatch = useDispatch();
   const cart = useSelector((state: State) => state.cart.cart);
   const isLogged = useSelector((state: State) => state.auth.isLogged);
@@ -190,6 +191,8 @@ const Cart = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    setProcessingPayment(true)
+
     console.log(cart, cartSubtotal, cartTotal);
 
     //Do validation using custom hook
@@ -261,7 +264,7 @@ const savedOrder = await db.collection("orders").add(order)
     console.log("Document written with ID: ", docRef.id);
     console.log("Document written with : ", docRef);
     console.log("Document written with ID: ", );
-    docRef.set({...order, orderId: docRef.id})
+    await docRef.set({...order, orderId: docRef.id})
     return (await docRef.get()).data();
     // console.log("You can now also access this. as expected: ", this.foo)
   })
@@ -273,11 +276,20 @@ const savedOrder = await db.collection("orders").add(order)
 
 
 
-    dispatch(cartActions.resetCart())
 
-    
+setProcessingPayment(false)
 
-    navigate('/order-confirmation', { state: {order: savedOrder}  });
+setPaymentReceived(true)
+let element = document.getElementById('payment-received');
+
+// notificationTextClasses = ('paymentReceived');
+
+setTimeout(() => {
+      dispatch(cartActions.resetCart())
+      setPaymentReceived(false)
+      navigate('/order-confirmation', { state: {order: savedOrder}  });
+    }, 2500)
+
 
 
 
@@ -342,6 +354,8 @@ const savedOrder = await db.collection("orders").add(order)
   const countryInputClasses = !countryInputHasError
   ? classes.control
   : `${classes.control} ${classes.invalid}`;
+
+  const notificationTextClasses = !paymentReceived ? classes.paymentReceived : `${classes.paymentReceived} ${classes.paymentReceivedActive}`;
 
 
   return (
@@ -888,7 +902,7 @@ const savedOrder = await db.collection("orders").add(order)
                     </div> */}
                     <div className={classes.checkoutButtonWrapper}>
                       <button>{processingPayment ? <FontAwesomeIcon icon={faSpinner} className={classes.spinner} /> : `Confirm Checkout`}</button>
-                      
+                      <p className={notificationTextClasses}>$$$ Payment Received! :)</p>
                     </div>
                   </form>}
 

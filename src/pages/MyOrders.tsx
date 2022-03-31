@@ -162,10 +162,10 @@ const MyOrders = () => {
 
   }, [uid])
 
-  useEffect(() => {
-    console.log(myOrders);
+  // useEffect(() => {
+  //   console.log(myOrders);
 
-  }, [myOrders])
+  // }, [myOrders])
 
   return (
     <div className={classes.container}>

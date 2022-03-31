@@ -9,6 +9,7 @@ interface Props {
   message: string;
   onClose: () => void;
   onConfirm?: () => void;
+  openSuccessModal: () => void;
   deleteLocalOrder: React.Dispatch<React.SetStateAction<any>>
   order: {
     firstName: string;
@@ -132,10 +133,14 @@ const ModalOverlay = (props: Props): JSX.Element => {
 
 
       })
-
+//??????
+      console.log('open success');
+      // props.openSuccessModal()
+      setLoading(false)
       onClose()
 
-      setLoading(false)
+
+
 
     } catch(err) {
       setLoading(false)
@@ -182,6 +187,7 @@ const Modal = (props: Props): JSX.Element => {
           onClose={props.onClose}
           onConfirm={props.onConfirm}
           order={props.order}
+          openSuccessModal={props.openSuccessModal}
           deleteLocalOrder={props.deleteLocalOrder}
         />, document.getElementById('overlay-root')!
       )}

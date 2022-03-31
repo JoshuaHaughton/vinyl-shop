@@ -1,6 +1,7 @@
 import { collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs } from 'firebase/firestore';
 import React, { useState } from 'react'
 import Modal from '../components/ui/Modals/GeneralModalsModals/Modal';
+import SuccessModal from '../components/ui/Modals/SuccessModal/SuccessModal';
 import { db } from '../firebase';
 import { cartActions } from '../store/cart';
 import MyOrders from './MyOrders';
@@ -54,6 +55,7 @@ type ItemType = {
 
 const Order = ({ order, deleteOrder }: OrderType) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const cancelOrder = async () => {
     const docRef = (doc(db, "orders", order.orderId))
     console.log(docRef.id);
@@ -76,11 +78,26 @@ const Order = ({ order, deleteOrder }: OrderType) => {
     setOpenDeleteModal(false)
   }
 
+  const openSuccessModalHandler = () => {
+    setOpenSuccessModal(true)
+  }
+
+  const closeSuccessModalHandler = () => {
+    setOpenSuccessModal(false)
+  }
+
   return (
     <>
     
     
-    {openDeleteModal && <Modal title={'Cancel this order?'} message={'You will not be able to recover the deleted information from your order.'} onClose={() => setOpenDeleteModal(false)} onConfirm={cancelOrder} order={order} deleteLocalOrder={deleteOrder} />}
+    {openDeleteModal && <Modal title={'Cancel this order?'} message={'You will not be able to recover the deleted information from your order.'} onClose={() => setOpenDeleteModal(false)} onConfirm={cancelOrder} order={order} deleteLocalOrder={deleteOrder} openSuccessModal={openSuccessModalHandler}/>}
+    {/* {openSuccessModal && (
+      <SuccessModal
+        title="Order Cancelled."
+        message="This order has been cancelled successfully"
+        closeModal={closeSuccessModalHandler}
+      />
+    )} */}
     <div className={classes.orderCard}>
       <div className={classes.cardHead}>
 

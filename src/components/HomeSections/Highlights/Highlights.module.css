@@ -1,0 +1,19 @@
+.container {
+  padding: 56px 0;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.blue {
+  color: #0652b4;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}

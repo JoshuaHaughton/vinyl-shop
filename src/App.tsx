@@ -1,12 +1,12 @@
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Vinyls from "./pages/Vinyls";
+import Home from "./pages/Home/Home";
+import Vinyls from "./pages/AllVinyls/AllVinyls";
 // import { vinyls as vinylss } from "./data";
-import VinylInfo from "./pages/VinylInfo";
-import Cart from "./pages/Cart";
-import ScrollToTop from "./components/ui/ScrollToTop";
+import VinylInfo from "./pages/VinylInfo/VinylInfo";
+import Cart from "./pages/Cart/Cart";
+import ScrollToTop from "./components/ui/ScrollToTop/ScrollToTop";
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,8 +14,8 @@ import { vinylActions } from "./store/vinyls";
 import { login } from "./components/ui/Modals/AuthModal/authHelpers";
 import { reduxLogin, reduxLogout } from "./store/auth";
 import { cartActions } from "./store/cart";
-import OrderConfirmation from "./pages/OrderConfirmation";
-import MyOrders from "./pages/MyOrders";
+import OrderConfirmation from "./pages/OrderConfirmation/OrderConfirmation";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 interface Vinyls {
   id: number;
@@ -94,6 +94,24 @@ function App() {
       } else {
         //User isn't logged in
         dispatch(reduxLogout());
+      }
+    });
+
+    //Auto Logout
+    auth.onAuthStateChanged((user) => {
+      let userSessionTimeout = null;
+  
+      if (user === null && userSessionTimeout) {
+        clearTimeout(userSessionTimeout);
+        userSessionTimeout = null;
+      } else {
+        user!.getIdTokenResult().then((idTokenResult) => {
+          const authTime = idTokenResult.claims.auth_time * 1000;
+          const sessionDurationInMilliseconds = 60 * 30 * 1000; // 30 min
+          const expirationInMilliseconds = sessionDurationInMilliseconds - (Date.now() - authTime);
+          userSessionTimeout = setTimeout(() => auth.signOut(), expirationInMilliseconds);
+          reduxLogout();
+        });
       }
     });
 

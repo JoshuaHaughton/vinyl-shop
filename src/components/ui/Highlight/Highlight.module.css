@@ -1,0 +1,31 @@
+.highlight {
+  padding: 0 24px;
+  width: calc(100% / 3);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img {
+  border: 2px solid #0652b45d;
+  color: #0652b4;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.paragraph {
+  text-align: center;
+  max-width: 280px;
+}

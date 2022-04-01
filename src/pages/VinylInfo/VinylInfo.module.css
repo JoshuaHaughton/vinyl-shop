@@ -1,0 +1,225 @@
+.container {
+  padding: 40px 0;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.pageHeader {
+  padding: 0 24px;
+  margin-bottom:8px;
+  font-size: 32px;
+  color: #242424;
+  display: flex;
+  align-items: center;
+}
+
+.backLink {
+  color: #242424;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.backLink:hover {
+  transform: scale(1.1);
+  color: #cf0000;
+}
+
+.headerTitle {
+  margin-left: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+
+.selectedVinyl {
+  display: flex;
+}
+
+.selectedVinylFigure {
+  width: 75%;
+  min-height: 40%;
+  padding: 32px 32px;
+  max-width: 460px;
+  max-height: 460px;
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectedVinylTitle {
+  text-align: left;
+}
+
+.selectedVinylImg {
+  max-height: 460px;
+  height: 100%;
+  width: 100%;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 12px;
+  box-shadow: -1px 4px 6px 2px rgba(0, 0, 0, 0.20);
+  transition: box-shadow 300ms ease;
+  animation: floating 2.5s infinite ease-in-out;
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.selectedVinylImg:hover {
+  animation-play-state: running;
+  box-shadow: -1px 4px 12px 4px rgba(0, 0, 0, 0.25);
+}
+
+.selectedVinylImgSkeleton {
+  width: 100%;
+  height: 100%;
+  max-height: 460px;
+  min-height: 400px;
+  max-width: 50vh;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: -1px 4px 8px 2px rgb(0 0 0 / 30%);
+}
+
+.selectedVinylDescription {
+  width: 60%;
+  padding: 32px 32px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.selectedVinylTitle {
+  /* margin-bottom: 8px; */
+  padding-bottom: 0;
+}
+
+.selectedVinylArtist {
+  margin-bottom: 8px;
+}
+
+.skeletonTitle, .skeletonRating, .skeletonPrice {
+  background-color: rgb(227, 227, 227) !important;
+  margin-bottom: 8px;
+}
+
+.skeletonTitle {
+  height: 21px;
+  width: 100%;
+}
+
+.skeletonRating {
+  width: 100px;
+  height: 19px;
+}
+
+.skeletonPrice {
+  width : 200px;
+  height: 19px;
+}
+
+.vinylSummary {
+  margin-bottom: 16px;
+}
+
+.summaryTitle {
+  margin-bottom: 8px;
+}
+
+.summaryPara {
+  margin-bottom: 16px;
+}
+
+.button {
+  background-color: #0652b4;
+  color: white;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  transition: all 300ms ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:hover {
+  transform: scale(1.025);
+}
+
+.vinylsContainer {
+  padding: 40px 0;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.recommendedHeader {
+  padding: 0 24px;
+  margin-bottom: 8px;
+  font-size: 32px;
+  color: #242424;
+  display: flex;
+  align-items: center;
+}
+
+.recommendedTitle {
+  margin-left: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+
+.vinyls {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px -24px;
+}
+
+@media(max-width: 960px) {
+  .selectedVinylFigure {
+    width: 56%;
+  }
+
+}
+
+
+@media(max-width: 960px) {
+  .selectedVinylFigure {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 800px) {
+  .selectedVinyl {
+    flex-direction: column;
+  }
+
+  .selectedVinylDescription {
+    width: 100%;
+  }
+
+  .selectedVinylFigure {
+    width: 100%;
+  }
+
+  .recommendedHeader {
+    padding: 0;
+  }
+
+  .recommendedTitle {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,31 @@
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.blue {
+  color: #0652b4;
+}
+
+.vinyls {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px -24px;
+}
+
+
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 26px;
+  }
+
+}

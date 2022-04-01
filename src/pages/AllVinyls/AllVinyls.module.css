@@ -1,0 +1,48 @@
+.vinyls {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px -24px;
+}
+
+.container {
+  padding: 40px 0;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 24px; */
+  /* padding: 0 24px; */
+}
+
+.headerTitle {
+  /* margin-top: 24px; */
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+
+.selectWrapper {
+  display: flex;
+}
+
+.selectWrapper > select {
+  margin-left: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 200px;
+}

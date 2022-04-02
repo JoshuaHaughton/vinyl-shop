@@ -1,5 +1,5 @@
 # Vinyl Fresh - E-commerce Shop
-Vinyl Fresh is a dynamic e-commerce app where users can browse and "buy" vinyl record covers based on popular album covers. Users can create accounts, manage their cart, checkout with vinyl records, and view their orders scheduled for delivery. This passion project served as a way for me to learn more about React with Redux, Typescript, Firebase, and allowed me to experiment with implementing these features into something I've built myself.
+Vinyl Fresh is a dynamic e-commerce app where users can browse and order vinyl record covers based on popular album covers. Users can create accounts, manage their cart, checkout with vinyl records, and view their orders scheduled for delivery. This passion project served as a way for me to learn more about React with Redux, Typescript, Firebase, and allowed me to experiment with implementing these features into something I've built myself.
 
 View Live HERE: [Vinyl Fresh](https://vinyl-fresh.netlify.app/)
 
@@ -9,9 +9,9 @@ View Live HERE: [Vinyl Fresh](https://vinyl-fresh.netlify.app/)
 - HTML5
 - CSS3
 - JavaScript
+- Typescript
 - React.js
 - Redux Toolkit
-- Typescript
 - Firebase Firestore Database
 - Firebase User Authentication
 

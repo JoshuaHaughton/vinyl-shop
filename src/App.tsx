@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, db } from "./firebase";
 import { vinylActions } from "./store/vinyls";

@@ -179,6 +179,11 @@ const Order = ({ order, deleteOrder }: OrderType) => {
               </div>
 
               <div className={`${classes.detailCardRow} ${classes.orderPrice}`}>
+                <p>Tax (HST): </p>
+                <p>${(order.total - order.subtotal).toFixed(2)}</p>
+              </div>
+
+              <div className={`${classes.detailCardRow} ${classes.orderPrice}`}>
                 <p>Total:</p>
                 <p>${order.total}</p>
               </div>

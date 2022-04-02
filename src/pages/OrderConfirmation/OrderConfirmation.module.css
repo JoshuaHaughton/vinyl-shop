@@ -107,7 +107,6 @@
 
 .itemTitle {
   font-size: 20px;
-  /* margin-bottom: 16px; */
 }
 
 .itemPrice {
@@ -243,6 +242,10 @@
   .selectedTop > h3 {
     font-size: 28px;
   }
+
+  .itemTitle {
+    font-weight: bold;
+  }
 }
 
 @media (max-width: 570px) {
@@ -309,7 +312,7 @@
 
   .itemTitle {
     margin-bottom: 0;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .itemPrice {

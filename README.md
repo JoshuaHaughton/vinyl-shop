@@ -1,7 +1,7 @@
 # Vinyl Fresh - E-commerce Shop
-Vinyl Fresh is a dynamic e-commerce app where users can browse vinyls based on their favourite album covers. This passion project served as a way for me to learn more about JavaScript, React and Redux, and allowed me to experiment with implementing both these features into something I've built myself.
+Vinyl Fresh is a dynamic e-commerce app where users can browse and "buy" vinyl record covers based on popular album covers. Users can create accounts, manage their cart, checkout with vinyl records, and view their orders scheduled for delivery. This passion project served as a way for me to learn more about React with Redux, Typescript, Firebase, and allowed me to experiment with implementing these features into something I've built myself.
 
-View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
+View Live HERE: [Vinyl Fresh](https://vinyl-fresh.netlify.app/)
 
 
 
@@ -11,14 +11,20 @@ View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 - JavaScript
 - React.js
 - Redux Toolkit
+- Typescript
+- Firebase Firestore Database
+- Firebase User Authentication
 
 
 ## Description / Features
-- Page layouts and styling built entirely with HTML and CSS
+- Fully responsive page layouts and styling built from scratch with HTML and CSS
 - Use of React hooks
-- Functional sorting by price (low to high / high to low) or rating
-- Recommended vinyls showcases 5-star rated selections
+- Use of Custom Hooks for Input Validation
+- Functional sorting by genre, and price (low to high / high to low) or rating
 - Dynamically updating cart with quantities and price totals using Redux
+- Authorization State that persist on reloads (auto logout after 60 minutes)
+- Cart State that persist on reloads and relogs
+- Static types using Typescript
 - Final app and subsequent edits connected and deployed to Netlify
 
 
@@ -31,12 +37,32 @@ View Live HERE: [Vinyl Shop](https://sharp-murdock-022be0.netlify.app/)
 !['Landing page of website'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Landing.png)
 
 
-### Highlights
-!['Highlights of website'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Highlights.png)
+### Featured Vinyl Records
+!['Featured Viny Records'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Featured-Vinyls.png)
 
 
 ### All Vinyls
 !['List of all available vinyls'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/All-Vinyls.png)
+
+
+### Vinyl Info
+!['Information of cpecific vinyl cover'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Vinyl-Info.png)
+
+
+### Cart
+!['User Cart'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Cart.png)
+
+
+### Order Confirmation
+!['Confirmed Order page'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Order-Confirmation.png)
+
+
+### Past Orders
+!['Status of past orders from user'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/My-Orders.png)
+
+
+### Auth Modal
+!['Login / Signup Modal'](https://github.com/JoshuaHaughton/vinyl-shop/blob/main/docs/Auth-Modal.png)
 
 
 

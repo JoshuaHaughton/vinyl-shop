@@ -29,14 +29,8 @@
 }
 
 .skeletonImgWrapper {
-  /* width: 100%;
-  max-width: 250px;
-  height: 250px; */
-  /* background-color: rgb(204, 204, 204); */
   margin-bottom: 10px;
   position: relative;
-  /* box-shadow: none !important; */
-  /* box-shadow: -1px 1px 3px 2px rgb(0 0 0 / 10%); */
   border-radius: 12px;
 }
 
@@ -45,10 +39,11 @@
   max-width: 250px;
   transition: all 300ms ease;
   border-radius: 4px;
-  /* box-shadow: 1px 4px 2px 1px rgb(0 0 0 / 8%); */
 }
 
-.skeletonTitle, .skeletonRating, .skeletonPrice {
+.skeletonTitle,
+.skeletonRating,
+.skeletonPrice {
   background-color: rgb(227, 227, 227) !important;
   margin-bottom: 8px;
 }
@@ -64,14 +59,12 @@
 }
 
 .skeletonPrice {
-  width : 200px;
+  width: 200px;
   height: 19px;
 }
 
 @media (max-width: 768px) {
-
   .vinyl {
     width: 50%;
   }
-
 }

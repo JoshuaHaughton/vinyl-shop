@@ -69,7 +69,7 @@ body {
   color: white;
   padding: 1rem 0.5rem;
   cursor: pointer;
-  transition: all 450ms ease;;
+  transition: all 450ms ease;
   width: 40%;
   font-weight: bolder;
   font-size: 18px;
@@ -84,7 +84,6 @@ body {
 .button:hover {
   background-color: #fff;
   border: 2px solid black;
-  /* color: #0652b4; */
   transform: scale(1.015);
   color: black;
 }
@@ -115,7 +114,6 @@ body {
 
 .content {
   padding: 1rem;
-  /* padding-bottom: 0; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,19 +121,17 @@ body {
   width: 100%;
 }
 
-
 @media (max-width: 768px) {
   .modal {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
   }
 }
 
 @media (max-width: 375px) {
   .modal {
     width: 95%;
-    }
+  }
 }
-

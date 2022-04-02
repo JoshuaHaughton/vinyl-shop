@@ -1,8 +1,8 @@
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px white inset !important;
 }
 
 html {
@@ -106,7 +106,6 @@ body {
   transform: scale(1.1);
   opacity: 1;
 }
-
 
 .actions {
   padding: 1rem;
@@ -235,22 +234,19 @@ body {
   font-weight: bold;
 }
 
-
 @media (max-width: 768px) {
   .modal {
-  /* top: 20vh;
+    /* top: 20vh;
   left: 10%; */
-  width: 90%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .row {
     width: 100%;
   }
-
-
 }
 
 @media (max-width: 768px) {
@@ -258,4 +254,3 @@ body {
     width: 80%;
   }
 }
-

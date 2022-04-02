@@ -59,7 +59,7 @@
   color: white;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 450ms ease;;
+  transition: all 450ms ease;
   margin: 0 14px;
   font-weight: bold;
 }
@@ -80,10 +80,9 @@
   border-color: #fff;
   color: #0652b4;
   transform: scale(1.015);
-
 }
 
-.cancelButton:hover{
+.cancelButton:hover {
   border: 1px solid rgb(172, 0, 0);
   color: rgb(172, 0, 0);
   font-weight: bold;
@@ -121,7 +120,7 @@
 }
 
 .red {
-  color: rgb(233, 1, 1)
+  color: rgb(233, 1, 1);
 }
 
 @keyframes loading {
@@ -134,7 +133,6 @@
   }
 }
 
-
 @media (min-width: 768px) {
   .modal {
     left: calc(50% - 20rem);
@@ -142,11 +140,11 @@
   }
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   header {
     padding: 1rem 44px !important;
   }
   .actions {
-    justify-content: space-evenly
+    justify-content: space-evenly;
   }
 }

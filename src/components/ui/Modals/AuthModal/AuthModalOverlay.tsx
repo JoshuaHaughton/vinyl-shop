@@ -1,43 +1,26 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-// import { useAuth } from "../../../contexts/auth-context";
-// import useInputValidate from "../../../hooks/input-validation";
 import classes from "./AuthModal.module.css";
 import useInputValidate from "../../../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "./authHelpers";
 import { reduxLogin } from "../../../../store/auth";
-import { db } from "../../../../firebase";
-import { cartActions } from "../../../../store/cart";
-
-
 
 interface Props {
-  isSignUp: boolean
-  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>
-  closeModal: () => void
-  title: string
-  message: string
-  navLogin: () => void
-  openSuccessModal: () => void
-}
-
-type AuthState = {
-  auth: {
-    isLogged: boolean
-    full_name: string | null
-    uid: string | null
-  }
+  isSignUp: boolean;
+  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+  closeModal: () => void;
+  title: string;
+  message: string;
+  openSuccessModal: () => void;
 }
 
 const ModalOverlay = (props: Props): JSX.Element => {
   const [error, setError] = useState(null);
-  const [nameTouched, setNameTouched] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const uid = useSelector((state: AuthState) => state.auth.uid)
-  // const { signup, login, authLoading } = useAuth();
+  const [nameTouched, setNameTouched] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { isSignUp, setIsSignUp } = props;
   const dispatch = useDispatch();
 
@@ -45,20 +28,17 @@ const ModalOverlay = (props: Props): JSX.Element => {
     value: enteredName,
     hasError: nameInputHasError,
     isValid: enteredNameIsValid,
-    inputState: enteredNameInputState,
     reset: resetNameInput,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     submitHandler: nameSubmitHandler,
   } = useInputValidate((value) => {
-    console.log(value.split(' ').length);
-    let current = value.split(' ')
-    if (current.includes('') && nameTouched) {
-      return false
+    let current = value.split(" ");
+    if (current.includes("") && nameTouched) {
+      return false;
     } else {
-      return true
+      return true;
     }
-    // value.split(' ').length > 1 && value.trim().length > 0
   });
 
   const {
@@ -95,7 +75,6 @@ const ModalOverlay = (props: Props): JSX.Element => {
     (value) => value.trim().length >= 5 && value === enteredPassword,
   );
 
-
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -117,10 +96,8 @@ const ModalOverlay = (props: Props): JSX.Element => {
         return;
       }
 
-
       //Else if Login form is enabled
     } else {
-
       //Login only requires email and password
       emailSubmitHandler();
       passwordSubmitHandler();
@@ -131,95 +108,73 @@ const ModalOverlay = (props: Props): JSX.Element => {
       }
     }
 
-
-
     //If everything passes validation and works, attempt to submit
 
     if (isSignUp) {
       //If signup form, attempt to signup
 
+      const response = await signup(
+        enteredName,
+        enteredEmail,
+        enteredPassword,
+        setError,
+        resetEmailInput,
+        setLoading,
+        reduxLogin,
+        dispatch,
+      );
 
-      // setLoading(true)
-      const response = await signup(enteredName, enteredEmail, enteredPassword, setError, resetEmailInput, setLoading, reduxLogin, dispatch);
-
-      console.log('firebase signup function response', response);
       const success = response?.status === 200;
 
-      // setLoading(false)
-
-      //If successfull reset form inputs
+      //If successfull reset form inputs and render a success message to user
       if (success) {
-
         resetNameInput();
         resetEmailInput();
         resetPasswordInput();
         resetPasswordConfirmInput();
 
         props.openSuccessModal();
-        props.navLogin();
         props.closeModal();
 
         //Signed Up!
       }
     } else {
-      //If Login form, attempt to Login
+      //else If Login form instead of signup form, attempt to Login
 
-      const response = await login(enteredEmail, enteredPassword, setError, emailSubmitHandler, passwordSubmitHandler, dispatch, reduxLogin, setLoading);
+      const response = await login(
+        enteredEmail,
+        enteredPassword,
+        setError,
+        emailSubmitHandler,
+        passwordSubmitHandler,
+        dispatch,
+        reduxLogin,
+        setLoading,
+      );
 
-      console.log('firebase signup function response', response);
       const success = response?.status === 200;
-
-      // setLoading(false)
 
       //If successfull reset form inputs
       if (success) {
-
-      
-
-
-
         resetNameInput();
         resetEmailInput();
         resetPasswordInput();
         resetPasswordConfirmInput();
 
         props.openSuccessModal();
-        props.navLogin();
         props.closeModal();
 
         //Logged In!
       }
-
-      // setLoading(true)
-
-      // const response = await login(enteredEmail, enteredPassword, resetEmailInput, resetPasswordInput, setError);
-
-      // const success = response.status === 200;
-
-
-      // //If successfull, reset form inputs
-      // if (success) {
-
-      //   resetEmailInput();
-      //   resetPasswordInput();
-
-      //   props.openSuccessModal();
-      //   props.navLogin();
-      //   props.closeModal();
-
-      //   //Logged In!
-      // }
-
     }
   };
 
   //Toggle form between Signup and Login
-  
   const toggleOption = () => {
-    setIsSignUp(!isSignUp);
+    setIsSignUp((prev) => !prev);
   };
 
-  // Change classes of input field if error has been set
+  // Change classes of input field if error has been set by custom hook
   const nameInputClasses = !nameInputHasError
     ? classes.control
     : `${classes.control} ${classes.invalid}`;
@@ -236,14 +191,12 @@ const ModalOverlay = (props: Props): JSX.Element => {
     ? classes.control
     : `${classes.control} ${classes.invalid}`;
 
-  // Reset overall form error when email is changed
+  // Reset overall form error when email is changed (for invalid credentials on login)
   useEffect(() => {
     if (error) {
       setError(null);
     }
-  }, [enteredEmail]);
-
-
+  }, [enteredEmail, enteredPassword, enteredName]);
 
   return (
     <div className={`${classes.modal} ${classes.card}`}>
@@ -256,7 +209,6 @@ const ModalOverlay = (props: Props): JSX.Element => {
 
       <div className={classes.content}>
         <div className={classes.row}>
-          {/* <form className={classes.form} > */}
           <form className={classes.form} onSubmit={submitHandler}>
             {isSignUp && (
               <div className={nameInputClasses}>
@@ -267,13 +219,15 @@ const ModalOverlay = (props: Props): JSX.Element => {
                   placeholder="Enter first and last name"
                   onChange={nameChangeHandler}
                   onBlur={() => {
-                    setNameTouched(true)
-                    nameBlurHandler()
+                    setNameTouched(true);
+                    nameBlurHandler();
                   }}
                   value={enteredName}
                 />
                 {nameInputHasError && (
-                  <p className={classes.errorText}>Please enter a first and last name (1 space between)</p>
+                  <p className={classes.errorText}>
+                    Please enter a first and last name (1 space between)
+                  </p>
                 )}
               </div>
             )}
@@ -328,18 +282,17 @@ const ModalOverlay = (props: Props): JSX.Element => {
               </div>
             )}
 
-           {loading ? 
-           <button className={classes.loadingButton}>
-             <FontAwesomeIcon icon={faSpinner} className={classes.spinner}/>
-           </button>
-           :
-           <button className={classes.button}>
-              {isSignUp ? `Sign Up` : `Log In`}
-            </button>
-            }
+            {loading ? (
+              <button className={classes.loadingButton}>
+                <FontAwesomeIcon icon={faSpinner} className={classes.spinner} />
+              </button>
+            ) : (
+              <button className={classes.button}>
+                {isSignUp ? `Sign Up` : `Log In`}
+              </button>
+            )}
             {error && <p className={classes.formError}>{error}</p>}
           </form>
-          
         </div>
         <div className={classes.option}>
           <p>{isSignUp ? `Not signing up?` : `Not logging in?`} </p>

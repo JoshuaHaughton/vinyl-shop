@@ -1,26 +1,13 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./OrderItem.module.css";
-type ItemType = {
-  item: {
-    id: number;
-    title: string;
-    artist: string;
-    url: string;
-    originalPrice: number;
-    salePrice: number;
-    rating: number;
-    quantity: number;
-    genres: string[];
-  };
-};
+import { OrderItemType } from "../../../types";
 
-const OrderItem = ({ item }: ItemType) => {
-  const navigate = useNavigate()
+const OrderItem = ({ item }: OrderItemType) => {
+  const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(`/vinyls/${item.id}`)
-  }
+    navigate(`/vinyls/${item.id}`);
+  };
 
   return (
     <div className={classes.orderItem}>

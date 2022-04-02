@@ -8,26 +8,25 @@ let initialInputState = {
 };
 
 type State = {
-  value: string
-  isTouched: boolean
-}
+  value: string;
+  isTouched: boolean;
+};
 
 enum ActionKind {
-  Input = 'INPUT',
-  Blur = 'BLUR',
-  Reset = 'RESET',
-  Submit = 'SUBMIT',
+  Input = "INPUT",
+  Blur = "BLUR",
+  Reset = "RESET",
+  Submit = "SUBMIT",
 }
 
 type Action = {
-  type: ActionKind
-  value?: string | EventTarget
-}
-
+  type: ActionKind;
+  value?: string | EventTarget;
+};
 
 //Dispatched actions sent here
 const inputStateReducer = (state: State, action: Action): State => {
-  if (action.type === "INPUT" && typeof action.value === 'string' ) {
+  if (action.type === "INPUT" && typeof action.value === "string") {
     return { value: action.value, isTouched: state.isTouched };
   }
 
@@ -43,23 +42,24 @@ const inputStateReducer = (state: State, action: Action): State => {
     return { isTouched: true, value: state.value };
   }
 
-  throw new Error
-
+  throw new Error();
 };
 
-type Reducer<State, Action> = 
-(state: State, action: Action) => State;
+type Reducer<State, Action> = (state: State, action: Action) => State;
 const useInputValidate = (validateValue: (a: string) => boolean) => {
-
   const [inputState, dispatch] = useReducer(
     inputStateReducer,
     initialInputState,
-  )
+  );
 
   const valueIsValid = validateValue(inputState.value);
   const hasError = !valueIsValid && inputState.isTouched;
 
-  const valueChangeHandler = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  const valueChangeHandler = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>,
+  ) => {
     dispatch({ type: ActionKind.Input, value: event.target.value });
   };
 
@@ -83,7 +83,7 @@ const useInputValidate = (validateValue: (a: string) => boolean) => {
     isValid: valueIsValid,
     reset,
     submitHandler,
-    inputState
+    inputState,
   };
 };
 

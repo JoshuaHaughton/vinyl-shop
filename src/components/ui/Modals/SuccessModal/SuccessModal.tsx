@@ -1,12 +1,11 @@
-import React from "react";
 import { createPortal } from "react-dom";
 import Backdrop from "../Backdrop";
 import ModalOverlay from "./SuccessModalOverlay";
 
 interface Props {
-  title: string
-  closeModal: () => void
-  message: string
+  title: string;
+  closeModal: () => void;
+  message: string;
 }
 
 const SuccessModal = (props: Props) => {
@@ -21,7 +20,8 @@ const SuccessModal = (props: Props) => {
           title={props.title}
           message={props.message}
           closeModal={props.closeModal}
-        />, document.getElementById('overlay-root')!
+        />,
+        document.getElementById("overlay-root")!,
       )}
     </>
   );

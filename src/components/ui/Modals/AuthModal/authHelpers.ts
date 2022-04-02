@@ -1,23 +1,6 @@
 import { auth } from "../../../../firebase";
 import firebase from "firebase/compat/app";
 
-// interface AuthState {
-//   isLogged: boolean
-//   full_name: string | null
-//   uid: string | null
-// }
-
-// interface SignupProps {
-//   full_name: string
-//   email: string
-//   password: string
-//   setError: React.Dispatch<React.SetStateAction<null>>
-//   resetEmailInput: () => void
-//   setLoading: React.Dispatch<React.SetStateAction<boolean>>
-//   reduxLogin: (login: {full_name: string, uid: string}) => void
-//   dispatch: () => void
-// }
-
 interface ResultType {
   then: () => Promise<ResultType>;
 }
@@ -34,7 +17,6 @@ interface UserAuth {
   };
   displayName?: string;
 }
-
 
 export const signup = async (
   full_name: string,
@@ -63,10 +45,10 @@ export const signup = async (
             }),
           );
           setLoading(false);
-          setError(null)
+          setError(null);
           return { status: 200 };
         });
-        return { status: 200 };
+      return { status: 200 };
     })
     .catch((err) => {
       if (err !== "TypeError: e.preventDefault is not a function") {
@@ -83,8 +65,17 @@ export const signup = async (
   return response;
 };
 
-export const login = async (enteredEmail: string, enteredPassword: string, setError: React.Dispatch<React.SetStateAction<null>>, emailSubmitHandler: () => void, passwordSubmitHandler: () => void, dispatch: (login: { full_name?: string; uid?: any } | void) => void, reduxLogin: (login: { full_name: string; uid: string }) => void, setLoading: React.Dispatch<React.SetStateAction<boolean>>): Promise<any>  => {
-  setLoading(true)
+export const login = async (
+  enteredEmail: string,
+  enteredPassword: string,
+  setError: React.Dispatch<React.SetStateAction<null>>,
+  emailSubmitHandler: () => void,
+  passwordSubmitHandler: () => void,
+  dispatch: (login: { full_name?: string; uid?: any } | void) => void,
+  reduxLogin: (login: { full_name: string; uid: string }) => void,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+): Promise<any> => {
+  setLoading(true);
 
   //Login only requires email and password
   emailSubmitHandler();
@@ -97,23 +88,23 @@ export const login = async (enteredEmail: string, enteredPassword: string, setEr
       dispatch(
         reduxLogin({
           full_name: userAuth.user!.displayName!,
-          uid: userAuth.user!.uid
+          uid: userAuth.user!.uid,
         }),
       );
-      console.log('LOGIN SUCCESSFUL', userAuth.user)
-      setLoading(false)
-      setError(null)
-      return { status: 200 }
+      console.log("LOGIN SUCCESSFUL", userAuth.user);
+      setLoading(false);
+      setError(null);
+      return { status: 200 };
     })
     .catch((err) => {
       if (err !== "TypeError: e.preventDefault is not a function") {
         console.log(err);
-        setLoading(false)
-        setError(err.message)
-        return { status: 400 }
+        setLoading(false);
+        setError(err.message);
+        return { status: 400 };
       }
       return;
     });
 
-    return response
+  return response;
 };

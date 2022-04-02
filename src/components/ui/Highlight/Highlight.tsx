@@ -1,4 +1,4 @@
-import classes from './Highlight.module.css'
+import classes from "./Highlight.module.css";
 interface Props {
   icon: JSX.Element;
   title: string;
@@ -8,15 +8,11 @@ interface Props {
 const Highlight = ({ icon, title, para }: Props): JSX.Element => {
   return (
     <div className={classes.highlight}>
-      <div className={classes.img}>
-        {icon}
-      </div>
+      <div className={classes.img}>{icon}</div>
       <h3 className={classes.title}>{title}</h3>
-      <p className={classes.paragraph}>
-        {para}
-      </p>
+      <p className={classes.paragraph}>{para}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Highlight
+export default Highlight;

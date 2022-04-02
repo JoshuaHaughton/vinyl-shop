@@ -1,38 +1,12 @@
 import Vinyl from "../../ui/Vinyl/Vinyl";
-// import { vinyls } from "../data";
 import { useSelector } from "react-redux";
-import classes from './Discounted.module.css'
-
-interface VinylInterface {
-  id: number;
-  title: string;
-  artist: string;
-  url: string;
-  originalPrice: number;
-  salePrice: number | null;
-  rating: number;
-  genres: string[]
-}
-
-interface State {
-vinyls: {
-  vinyls: {
-      id: number;
-      title: string;
-      artist: string;
-      url: string;
-      originalPrice: number;
-      salePrice: number | null;
-      rating: number;
-      genres: string[]
-    }[];
-}
-}
+import classes from "./Discounted.module.css";
+import { VinylType, ReduxState } from '../../../types'
 
 const Discounted = () => {
-  const vinyls: VinylInterface[] = useSelector((state: State) => state.vinyls.vinyls);
-
-  
+  const vinyls: VinylType[] = useSelector(
+    (state: ReduxState) => state.vinyls.vinyls,
+  );
 
   return (
     <section id="recent">

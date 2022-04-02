@@ -2,6 +2,7 @@ import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { OrderArrayType } from '../../../../types'
 import classes from "./Modal.module.css";
 
 interface Props {
@@ -9,7 +10,6 @@ interface Props {
   message: string;
   onClose: () => void;
   onConfirm?: () => void;
-  openSuccessModal: () => void;
   deleteLocalOrder: React.Dispatch<React.SetStateAction<any>>
   order: {
     firstName: string;
@@ -40,37 +40,6 @@ interface Props {
       genres: string[]
     }[];
 }
-
-}
-
-type OrderArrayType = {
-  firstName: string;
-  lastName: string;
-  companyName: string | null;
-  address: string;
-  unit: string | null;
-  city: string;
-  email: string;
-  postalOrZip: string;
-  provinceOrState: string;
-  country: string;
-  subtotal: number;
-  total: number;
-  orderDate: string
-  deliveryDate: string;
-  uid: string;
-  orderId: string;
-  items: {
-    id: number;
-    title: string;
-    artist: string;
-    url: string;
-    originalPrice: number;
-    salePrice: number;
-    rating: number;
-    quantity: number;
-    genres: string[]
-  }[];
 }
 
 type OrderType = {
@@ -118,31 +87,24 @@ const ModalOverlay = (props: Props): JSX.Element => {
   const handleConfirm = async (onConfirm: () => void, onClose: () => void) => {
     try {
       setLoading(true)
-
       onConfirm()
 
+      //Delete local in client while async delete happens in the background
       props.deleteLocalOrder((prev: OrderArrayType)  => {
-
-        let originalOrders = JSON.parse(JSON.stringify(prev))
+       let originalOrders = JSON.parse(JSON.stringify(prev))
 
         let updatedOrders = originalOrders.filter((a: OrderType)  => {
           return a.orderId !== props.order.orderId
         })
 
         return updatedOrders;
-
-
       })
-//??????
-      console.log('open success');
-      // props.openSuccessModal()
+
       setLoading(false)
       onClose()
 
-
-
-
     } catch(err) {
+
       setLoading(false)
       console.log(err);
     }
@@ -159,7 +121,6 @@ const ModalOverlay = (props: Props): JSX.Element => {
       </header>
       <div className={classes.content}>
         <p> <span className={classes.red}>Warning:</span> {props.message}</p>
-        {/* <p>Have a great day!</p> */}
       </div>
       <footer className={classes.actions}>
         {props.onConfirm && <button className={`${classes.button} ${classes.cancelButton}`} onClick={() => handleConfirm(props.onConfirm!, props.onClose)}>{loading ? (
@@ -187,7 +148,6 @@ const Modal = (props: Props): JSX.Element => {
           onClose={props.onClose}
           onConfirm={props.onConfirm}
           order={props.order}
-          openSuccessModal={props.openSuccessModal}
           deleteLocalOrder={props.deleteLocalOrder}
         />, document.getElementById('overlay-root')!
       )}

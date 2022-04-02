@@ -1,16 +1,7 @@
-// SKELETON DATA ("Unlike real data Dont have URLs, so loading state will be shown until replaced with real data")
-type skeletonVinyls = {
-  id: number;
-  title: string;
-  artist: string;
-  originalPrice: number;
-  url?: string;
-  salePrice: number | null;
-  rating: number;
-  genres: string[]
-}[]
+// SKELETON DATA ("Unlike real data Dont have URLs to images, so loading state will be shown until replaced with real data")
+import { skeletonVinylArrayType } from "./types";
 
-export const skeletonVinyls: skeletonVinyls = [
+export const skeletonVinyls: skeletonVinylArrayType = [
   {
     id: 1,
     title: "Happier Than Ever",

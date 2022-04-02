@@ -8,7 +8,6 @@ interface Props {
   title: string
   isSignUp: boolean
   message: string
-  navLogin: () => void
   setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>
   openSuccessModal: () => void
 }
@@ -27,7 +26,6 @@ const AuthModal = (props: Props): JSX.Element => {
           closeModal={props.closeModal}
           isSignUp={props.isSignUp}
           setIsSignUp={props.setIsSignUp}
-          navLogin={props.navLogin}
           openSuccessModal={props.openSuccessModal}
         />, document.getElementById('overlay-root')!
       )}

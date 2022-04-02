@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import Price from "../Price/Price";
-import skeleton from '../../../assets/skeleton.png'
-import classes from './Vinyl.module.css'
+import skeleton from "../../../assets/skeleton.png";
+import classes from "./Vinyl.module.css";
 
 interface Props {
   vinylInfo: {
@@ -14,30 +14,27 @@ interface Props {
     originalPrice: number;
     salePrice: number | null;
     rating: number;
-    genres: string[]
+    genres: string[];
   };
 }
 
 const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
   const [img, setImg] = useState<HTMLImageElement>();
 
-  //whole component doesn't re-render with useRef unlike useState
+  //Whole component doesn't re-render with useRef unlike useState
   const mountedRef = useRef(true);
 
-  //loads skeleton image in place of vinyls until they load
+  //Loads skeleton image in place of vinyls until they load
   useEffect(() => {
     let image = new Image()!;
     if (vinylInfo.url) {
-      console.log('i have url now');
-      image.src = vinylInfo.url || 'null';
-      console.log(vinylInfo, 'load');
+      image.src = vinylInfo.url || "null";
+
       image.onload = () => {
-        console.log('img load');
         if (vinylInfo.url) {
           setImg(image);
         }
       };
-
     }
     return () => {
       //when the component unmounts
@@ -68,11 +65,15 @@ const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
       ) : (
         <>
           <div>
-          <Link to={`#`}>
-            <figure className={classes.skeletonImgWrapper}>
-              <img src={skeleton} alt="Loading Skeleton" className={classes.skeletonImg} />
-            </figure>
-          </Link>
+            <Link to={`#`}>
+              <figure className={classes.skeletonImgWrapper}>
+                <img
+                  src={skeleton}
+                  alt="Loading Skeleton"
+                  className={classes.skeletonImg}
+                />
+              </figure>
+            </Link>
           </div>
           <div className={classes.skeletonTitle}></div>
           <div className={classes.skeletonRating}></div>

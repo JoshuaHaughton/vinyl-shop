@@ -1,12 +1,11 @@
-import React from 'react'
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classes from './SuccessModal.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classes from "./SuccessModal.module.css";
 
 interface Props {
-  title: string
-  closeModal: () => void
-  message: string
+  title: string;
+  closeModal: () => void;
+  message: string;
 }
 
 const SuccessModalOverlay = (props: Props) => {
@@ -20,14 +19,16 @@ const SuccessModalOverlay = (props: Props) => {
       </header>
       <div className={classes.content}>
         <p className={classes.text}>{props.message}</p>
-          <br />   
+        <br />
         <p>Have a great day!</p>
       </div>
       <div className={classes.actions}>
-        <button className={classes.button} onClick={props.closeModal}>Okay</button>
+        <button className={classes.button} onClick={props.closeModal}>
+          Okay
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SuccessModalOverlay;

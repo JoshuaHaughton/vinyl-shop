@@ -4,159 +4,25 @@ import { useSelector } from "react-redux";
 import Vinyl from "../../components/ui/Vinyl/Vinyl";
 import { skeletonVinyls } from "../../skeletonData";
 import classes from './AllVinyls.module.css'
-
-interface VinylInterface {
-    id: number;
-    title: string;
-    artist: string;
-    url: string;
-    originalPrice: number;
-    salePrice: number | null;
-    rating: number;
-    genres: string[]
-  }
-
-interface State {
-  vinyls: {
-    vinyls: {
-        id: number;
-        title: string;
-        artist: string;
-        url: string;
-        originalPrice: number;
-        salePrice: number | null;
-        rating: number;
-        genres: string[]
-      }[];
-  }
-}
-
-
+import { filterVinylGenres, filterVinyls } from "./AllVinylsHelpers";
+import { VinylType, ReduxState } from '../../types'
 
 const Vinyls = (): JSX.Element => {
-  const initialVinyls: VinylInterface[] = useSelector((state: State) => state.vinyls.vinyls);
-  const [vinyls, setVinyls] = useState<VinylInterface[]>(initialVinyls || []);
-  const [displayedVinyls, setDisplayedVinyls] = useState<VinylInterface[]>(initialVinyls || []);
+  const initialVinyls: VinylType[] = useSelector((state: ReduxState) => state.vinyls.vinyls);
+  //vinyls state will always contain all vinyls
+  const [vinyls, setVinyls] = useState<VinylType[]>(initialVinyls || []);
+  //displayedVinyls state renders vinyls to users after filtering
+  const [displayedVinyls, setDisplayedVinyls] = useState<VinylType[]>(initialVinyls || []);
   const [filterState, setFilterState] = useState<string>("DEFAULT");
-  console.log('init', initialVinyls);
-  console.log(vinyls.length >= 1);
-  console.log(vinyls);
 
 
+  //Whenever new vinyls are etched by Redux, set Vinyls to all retrieved Vinyls
   useEffect(() => {
     setVinyls(initialVinyls);
     setDisplayedVinyls(initialVinyls);
     
   }, [initialVinyls])
 
-  
-  
-  const filterVinyls = (filter: string) => {
-    console.log(filter);
-    setFilterState(filter)
-    if (filter === "LOW_TO_HIGH") {
-      setDisplayedVinyls(
-        displayedVinyls
-          .slice()
-          .sort(
-            (a: any, b: any) =>
-              (a.salePrice || a.originalPrice) -
-              (b.salePrice || b.originalPrice),
-          ),
-      );
-    }
-
-    if (filter === "HIGH_TO_LOW") {
-      setFilterState(filter)
-      setDisplayedVinyls(
-        displayedVinyls
-          .slice()
-          .sort(
-            (a, b) =>
-              (b.salePrice || b.originalPrice) -
-              (a.salePrice || a.originalPrice),
-          ),
-      );
-    }
-
-    if (filter === "RATING") {
-      setFilterState(filter)
-      setDisplayedVinyls(displayedVinyls.slice().sort((a, b) => b.rating - a.rating));
-    }
-  };
-
-
-  const filterVinylGenres = (filter: string) => {
-    setFilterState("DEFAULT")
-    if (filter === "POP") {
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-          .filter(
-            (a) =>
-              (a.genres.includes('Pop')),
-          ),
-      );
-      
-    }
-
-    if (filter === "INDIE") {
-
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-          .filter(
-            (a) =>
-              (a.genres.includes('Alternative/Indie')),
-          ),
-      );
-    }
-
-    if (filter === "RAP") {
-
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-          .filter(
-            (a) =>
-              (a.genres.includes('Hip-Hop/Rap')),
-          ),
-      );
-    }
-
-    if (filter === "R&B") {
-
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-          .filter(
-            (a) =>
-              (a.genres.includes('R&B/Soul')),
-          ),
-      );
-    }
-
-    if (filter === "AFROBEATS") {
-
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-          .filter(
-            (a) =>
-              (a.genres.includes('Afrobeats')),
-          ),
-      );
-    }
-
-    if (filter === "ALL") {
-
-      setDisplayedVinyls(
-        vinyls
-          .slice()
-      );
-    }
-
-  };
 
 
   return (
@@ -171,8 +37,7 @@ const Vinyls = (): JSX.Element => {
                   <select
                     id="genre-filter"
                     defaultValue="DEFAULT"
-                    // value={filterState}
-                    onChange={(e) => filterVinylGenres(e.target.value)}
+                    onChange={(e) => filterVinylGenres(e.target.value, setFilterState, setDisplayedVinyls, vinyls)}
                   >
                     <option value="DEFAULT" disabled>
                       Genre
@@ -187,9 +52,8 @@ const Vinyls = (): JSX.Element => {
 
                   <select
                     id="filter"
-                    // defaultValue="DEFAULT"
                     value={filterState}
-                    onChange={(e) => filterVinyls(e.target.value)}
+                    onChange={(e) => filterVinyls(e.target.value, setFilterState, setDisplayedVinyls, displayedVinyls)}
                   >
                     <option value="DEFAULT" disabled>
                       Sort

@@ -16,7 +16,7 @@
   display: flex;
 }
 
-.logo:hover .logoImg{
+.logo:hover .logoImg {
   transform: scale(1.1);
   filter: none;
 }
@@ -26,7 +26,6 @@
   filter: grayscale(1) invert(1);
   transition: all 300ms ease;
 }
-
 
 .footerList {
   margin: 20px 0 24px 0;

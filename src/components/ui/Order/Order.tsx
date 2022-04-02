@@ -4,7 +4,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import React, { useState } from "react";
-import Modal from "../Modals/GeneralModalsModals/Modal";
+import Modal from "../Modals/DeleteModal/DeleteModal";
 import { db } from "../../../firebase";
 import classes from "./Order.module.css";
 import OrderItem from "../OrderItem/OrderItem";

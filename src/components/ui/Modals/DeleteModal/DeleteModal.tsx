@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { OrderArrayType } from '../../../../types'
-import classes from "./Modal.module.css";
+import classes from "./DeleteModal.module.css";
 
 interface Props {
   title: string;
@@ -128,7 +128,7 @@ const ModalOverlay = (props: Props): JSX.Element => {
           ) : (
             "Confirm"
           )}</button>}
-        <button className={classes.button} onClick={props.onClose}>{props.onConfirm ? 'Cancel' : 'Okay'}</button>
+        <button className={classes.button} onClick={props.onClose}>{props.onConfirm ? 'Go Back' : 'Okay'}</button>
       </footer>
     </div>
   );

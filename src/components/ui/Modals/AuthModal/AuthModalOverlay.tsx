@@ -24,6 +24,7 @@ const ModalOverlay = (props: Props): JSX.Element => {
   const { isSignUp, setIsSignUp } = props;
   const dispatch = useDispatch();
 
+  //First and Last name
   const {
     value: enteredName,
     hasError: nameInputHasError,
@@ -34,9 +35,12 @@ const ModalOverlay = (props: Props): JSX.Element => {
     submitHandler: nameSubmitHandler,
   } = useInputValidate((value) => {
     let current = value.split(" ");
-    if (current.includes("") && nameTouched) {
+    if ((!current.includes("") && current.length < 2) && nameTouched) {
       return false;
     } else {
+      if (value.trim() !== value) {
+        return false
+      }
       return true;
     }
   });

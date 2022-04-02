@@ -26,7 +26,6 @@ const MyOrders = () => {
           <div className={classes.ordersContainer}>
             {myOrders[0] &&
               myOrders.map((order: OrderArrayType) => {
-                console.log(order);
                 if (!order?.orderId) {
                   console.log(order);
                   return;

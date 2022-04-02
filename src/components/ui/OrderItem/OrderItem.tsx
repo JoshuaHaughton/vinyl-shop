@@ -12,7 +12,7 @@ const OrderItem = ({ item }: OrderItemType) => {
   return (
     <div className={classes.orderItem}>
       <figure className={classes.imgWrapper}>
-        <img src={item.url} />
+        <img src={item.url} alt={`${item.title} Vinyl Cover`} />
       </figure>
       <div className={classes.itemDescription}>
         <h5>{item.title}</h5>

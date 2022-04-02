@@ -40,7 +40,7 @@ function App() {
         dispatch(reduxLogout());
       }
     });
-  }, [auth, cart]);
+  }, [auth, cart, dispatch, isLogged]);
 
   useEffect(() => {
     //Grab vinyls from firebase on first load and set to state using redux
@@ -56,7 +56,7 @@ function App() {
           ),
         );
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     //Whenever UserId changes (Log ins or log outs) if it is truthy, then retrieve the cart data under that UID (If there is one)
@@ -98,7 +98,7 @@ function App() {
         });
       }
     });
-  }, [uid]);
+  }, [uid, dispatch]);
 
   return (
     <Router>

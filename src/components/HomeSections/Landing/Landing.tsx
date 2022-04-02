@@ -17,7 +17,7 @@ const Landing = () => {
               <button className={classes.button}>Browse Vinyls</button>
             </Link>
             <figure className={classes.imgWrapper}>
-              <img src={HeroImage} alt="Landing Image" />
+              <img src={HeroImage} alt="Landing" />
             </figure>
           </div>
         </div>

@@ -45,7 +45,6 @@ const inputStateReducer = (state: State, action: Action): State => {
   throw new Error();
 };
 
-type Reducer<State, Action> = (state: State, action: Action) => State;
 const useInputValidate = (validateValue: (a: string) => boolean) => {
   const [inputState, dispatch] = useReducer(
     inputStateReducer,

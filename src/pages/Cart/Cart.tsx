@@ -61,8 +61,6 @@ const Cart = () => {
 
   const {
     value: enteredCompanyName,
-    hasError: companyNameInputHasError,
-    isValid: enteredCompanyNameIsValid,
     reset: resetCompanyNameInput,
     valueChangeHandler: companyNameChangeHandler,
     inputBlurHandler: companyNameBlurHandler,
@@ -85,8 +83,6 @@ const Cart = () => {
 
   const {
     value: enteredUnit,
-    hasError: unitInputHasError,
-    isValid: enteredUnitIsValid,
     reset: resetUnitInput,
     valueChangeHandler: unitChangeHandler,
     inputBlurHandler: unitBlurHandler,
@@ -238,6 +234,7 @@ const Cart = () => {
       resetPostalOrZipInput();
       resetCityInput();
       resetProvinceOrStateInput();
+      resetCountryInput();
 
       navigate("/order-confirmation", { state: { order: savedOrder } });
     }, 2000);

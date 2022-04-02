@@ -89,7 +89,7 @@ const Nav = () => {
 
       changeBackendCart();
     }
-  }, [cart]);
+  }, [cart, uid, numberOfItems]);
 
   return (
     <>

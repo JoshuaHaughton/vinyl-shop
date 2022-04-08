@@ -111,7 +111,7 @@ LANDING
 */
 
 #landing {
-  background-color: rgba(0, 47, 255, 0.13);
+  background-color: rgb(74 132 255 / 19%);
 }
 
 header {
@@ -154,7 +154,7 @@ HIGHLIGHTS
 
 #features {
   padding-top: 8vw;
-  background-color: rgba(0, 47, 255, 0.13);
+  background-color: rgb(74 132 255 / 19%);
 }
 
 /* 
@@ -164,7 +164,7 @@ EXPLORE
 */
 
 #explore {
-  background-color: rgba(0, 47, 255, 0.13);
+  background-color: rgb(74 132 255 / 19%);
 }
 
 /* 

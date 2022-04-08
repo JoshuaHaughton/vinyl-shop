@@ -21,7 +21,8 @@ interface Props {
 const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
   const [img, setImg] = useState<HTMLImageElement>();
 
-  //Whole component doesn't re-render with useRef unlike useState
+  //When photo hasn't rendered to the DOM yet, provide a fallback loading skeleton to render to users
+  //When the Vinyl component unmounts, we should reset this
   const mountedRef = useRef(true);
 
   //Loads skeleton image in place of vinyls until they load

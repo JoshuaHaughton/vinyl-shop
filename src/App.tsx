@@ -21,6 +21,7 @@ function App() {
   const uid = useSelector((state: ReduxState) => state.auth.uid);
   const cart = useSelector((state: ReduxState) => state.cart.cart);
   const isLogged = useSelector((state: ReduxState) => state.auth.isLogged);
+  const numberOfItems = useSelector((state: ReduxState) => state.cart.quantity);
 
   useEffect(() => {
     //Check if user is logged via firebase, if so, login locally using redux. Logout locally otherwise.
@@ -70,6 +71,7 @@ function App() {
               dispatch(cartActions.setCart(doc.data()));
             });
           } else {
+            userCart.set({ cart: cart, quantity: numberOfItems, uid }); // create the document
             return;
           }
         });

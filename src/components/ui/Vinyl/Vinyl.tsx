@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import Price from "../Price/Price";
@@ -21,9 +21,6 @@ interface Props {
 const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
   const [img, setImg] = useState<HTMLImageElement>();
 
-  //When photo hasn't rendered to the DOM yet, provide a fallback loading skeleton to render to users
-  //When the Vinyl component unmounts, we should reset this
-  const mountedRef = useRef(true);
 
   //Loads skeleton image in place of vinyls until they load
   useEffect(() => {
@@ -37,10 +34,6 @@ const Vinyl = ({ vinylInfo }: Props): JSX.Element => {
         }
       };
     }
-    return () => {
-      //when the component unmounts
-      mountedRef.current = false;
-    };
   }, [vinylInfo]);
 
   return (

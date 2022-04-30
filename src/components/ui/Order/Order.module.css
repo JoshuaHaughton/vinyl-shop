@@ -223,4 +223,8 @@
     font-size: 14px;
     text-align: center !important;
   }
+
+  .deliveryDate {
+    text-align: center;
+  }
 }

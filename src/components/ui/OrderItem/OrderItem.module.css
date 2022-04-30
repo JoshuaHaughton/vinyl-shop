@@ -5,13 +5,17 @@
 }
 
 .imgWrapper {
+  width: 120px;
   max-width: 120px;
+  height: 120px;
   max-height: 120px;
 }
 
 .imgWrapper > img {
   border-radius: 6px;
   box-shadow: 0 4px 5px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  width: 100%;
+  height: 100%;
 }
 
 .itemDescription {
@@ -84,5 +88,11 @@
 
   .itemDescription > button {
     margin-top: 4px;
+  }
+}
+
+@media(max-width: 390px) {
+  .imgWrapper {
+    margin-bottom: 8px;
   }
 }

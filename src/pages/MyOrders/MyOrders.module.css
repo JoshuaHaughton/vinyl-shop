@@ -36,3 +36,9 @@
     padding: 0 32px;
   }
 }
+
+@media (max-width: 475px) { 
+  .container > h1 {
+    font-size: 48px;
+  }
+}

@@ -13,9 +13,7 @@ import classes from "./VinylInfo.module.css";
 const VinylInfo = (): JSX.Element => {
   const { id } = useParams<string>();
   const [selectedImg, setSelectedImg] = useState<HTMLImageElement>();
-  const vinyls: VinylType[] = useSelector(
-    (state: ReduxState) => state.vinyls.vinyls,
-  );
+  const vinyls: VinylType[] = useSelector((state: ReduxState) => state.vinyls.vinyls);
   const cart = useSelector((state: ReduxState) => state.cart.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();

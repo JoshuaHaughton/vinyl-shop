@@ -164,3 +164,22 @@ export type OrderItemType = {
     genres: string[];
   };
 };
+
+export type CheckoutFormType = {
+  cartSubtotal: number,
+  cartTotal: number,
+}
+
+export type CartItemType = {
+  vinyl: {
+  id: number;
+  title: string;
+  artist: string;
+  url?: string;
+  originalPrice: number;
+  salePrice: number | null;
+  rating: number;
+  quantity: number;
+  genres: string[]
+  }
+}

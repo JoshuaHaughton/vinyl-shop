@@ -1,0 +1,376 @@
+
+.cartQuantity {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.cartTotal {
+  width: 100%;
+  max-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 18px;
+}
+
+.cartItem {
+  margin: 24px;
+  display: flex;
+  padding-right: 8px;
+}
+
+.cartVinylImg {
+  width: 100%;
+  max-width: 106px;
+  max-height: 106px;
+  border-radius: 4px;
+  box-shadow: -1px 3px 5px 2px rgba(0, 0, 0, 0.08);
+}
+
+.cartVinylInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 16px 4px 16px;
+}
+
+.cartVinylTitle {
+  font-size: 19px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.cartVinylArtist {
+  font-size: 16px;
+}
+
+.cartVinylPrice {
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.cartVinylRemove {
+  background-color: transparent;
+  color: #cf0000;
+  border: none;
+  padding-left: 0;
+  width: 48px;
+  transition: all 200ms ease;
+}
+
+.cartVinylRemove:hover {
+  opacity: 0.6;
+}
+
+.cartInput {
+  padding: 8px;
+  width: 60px;
+}
+
+.cartEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartEmptyImg {
+  padding: 40px;
+  max-width: 400px;
+}
+
+.button,
+.checkoutButton {
+  background-color: #0652b4;
+  color: white;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  transition: all 300ms ease;
+}
+
+.button:active,
+.checkoutButton:active {
+  transform: translateY(1px);
+}
+
+.button:hover,
+.checkoutButton:hover {
+  transform: scale(1.025);
+}
+
+.subTotal,
+.totalTax,
+.totalPrice {
+  font-size: 18px;
+  margin-bottom: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subTotal {
+  padding-top: 24px;
+}
+
+.totalPrice {
+  font-weight: bold;
+}
+
+.checkout {
+  display: flex;
+  padding: 0 24px;
+}
+
+.checkoutForm {
+  width: 40%;
+  margin: 40px 0 24px 0;
+}
+
+.checkoutForm > h3 {
+  padding: 0 12px;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.formRow > div {
+  width: 100%;
+  margin: 16px 8px;
+}
+
+.formRow > div > input {
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  max-width: 100%;
+  padding: 8px;
+  outline: none;
+  transition: all 300ms ease;
+}
+
+.formRow > div > input:hover {
+  border: 1px solid #0652b4;
+}
+
+.formRow > div > input:focus {
+  border: 2px solid #0652b4;
+}
+
+.formRow > div > select {
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  max-width: 100%;
+  padding: 8px;
+}
+
+.checkoutTotal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  font-size: 16px;
+  border-top: 2px solid #0652b4;
+}
+
+.checkoutButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.checkoutButtonWrapper > button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px;
+  width: 60%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.checkoutButtonBlocked {
+  background-color: black;
+  color: red;
+  padding: 12px 24px;
+  cursor: not-allowed;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  transition: all 300ms ease;
+}
+
+.paymentReceived {
+  transition: all 400s ease-in-out;
+  color: rgb(0, 163, 0);
+  display: none;
+  animation: shake 2.5s infinite ease-in-out;
+  animation-play-state: paused;
+  font-size: 8px;
+}
+
+.paymentReceivedActive {
+  transition: all 400s ease-in-out;
+  display: inline !important;
+  font-weight: bold;
+  animation: shake 1.5s infinite ease-in-out;
+  animation-play-state: running;
+  font-size: 18px;
+  margin-top: 18px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.shipping {
+  margin-top: 40px;
+}
+
+.invalid input,
+.invalid select {
+  border: 2px solid #aa0b20 !important;
+  background-color: #ffeff1;
+}
+
+.invalid input:focus,
+.invalid select:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.errorText {
+  color: #b40e0e;
+  width: 90%;
+}
+
+.formError {
+  color: #b40e0e;
+  width: 90%;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: bold;
+}
+
+.checkoutButton {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 0;
+}
+
+.checkoutButtonBlocked {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 0;
+}
+
+.spinner {
+  animation: loading 600ms infinite linear;
+  transition: all 300ms ease;
+  font-size: 26px;
+  color: rgb(0, 163, 0);
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 815px) {
+  .checkout {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .checkoutForm {
+    width: 70%;
+    margin-top: 80px;
+  }
+
+  .checkoutTotal {
+    margin-left: 0;
+    max-width: 444px;
+  }
+
+  .checkoutForm > h3 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cartVinylTitle {
+    font-size: 16px;
+  }
+
+  .cartVinylPrice {
+    margin-bottom: 0px;
+  }
+
+  .cartVinylRemove {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 635px) {
+  .cartVinylImg {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkoutForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .cartVinylTitle {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .cartVinylInfo {
+    padding-left: 0;
+  }
+}

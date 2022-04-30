@@ -60,7 +60,8 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    //Whenever UserId changes (Log ins or log outs) if it is truthy, then retrieve the cart data under that UID (If there is one)
+    //Whenever UserId changes (Log ins or log outs) if it is truthy, then retrieve the cart data under that UID (If there is one),
+    //otherwise create the cart
     if (uid) {
       const userCart = db.collection("cart").doc(uid!);
 

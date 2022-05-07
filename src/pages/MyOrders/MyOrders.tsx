@@ -11,6 +11,7 @@ const MyOrders = () => {
   const uid = useSelector((state: ReduxState) => state.auth.uid);
   const isLogged = useSelector((state: ReduxState) => state.auth.isLogged);
 
+  //fetch user orders whenever user logs in
   useEffect(() => {
     if (uid) {
       fetchOrders(uid, setLoading, setMyOrders);

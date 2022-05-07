@@ -24,6 +24,8 @@ type Action = {
   value?: string | EventTarget;
 };
 
+//Handles validity of input in forms based on a callback passed by user
+
 //Dispatched actions sent here
 const inputStateReducer = (state: State, action: Action): State => {
   if (action.type === "INPUT" && typeof action.value === "string") {

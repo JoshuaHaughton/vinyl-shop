@@ -105,7 +105,7 @@ export const skeletonVinyls: skeletonVinylArrayType = [
   },
   {
     id: 12,
-    title: "Certified Lover Boy",
+    title: "Views",
     artist: "Drake",
     originalPrice: 24.92,
     salePrice: 21.30,
